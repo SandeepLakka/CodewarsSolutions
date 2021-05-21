@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * rowSumOddNumbers(2); // 3 + 5 = 8
  * Categories: Fundamentals, Arrays, Lists, Data Structures, Numbers
  * Arithmetic, Mathematics, Algorithms
+ * https://www.codewars.com/kata/55fd2d567d94ac3bc9000064/java
  */
 public class SumOfOddNumbers {
     @Test
