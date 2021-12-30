@@ -2,12 +2,8 @@ package io.github.sandeeplakka.codewars.kyu5;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Stack;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -86,6 +82,9 @@ public class DirReduction {
         assertArrayEquals(new String[]{"WEST", "WEST"},
                 dirReduc(new String[]{"EAST", "WEST", "WEST", "WEST"}),
                 "\"EAST\", \"WEST\", \"WEST\", \"WEST\"");
+        assertArrayEquals(new String[]{"EAST", "SOUTH", "WEST", "NORTH"},
+                dirReduc(new String[]{"EAST", "SOUTH", "WEST", "NORTH"}),
+                "\"EAST\", \"SOUTH\", \"WEST\", \"NORTH\"");
     }
 
     public static String[] dirReduc(String[] arr) {
