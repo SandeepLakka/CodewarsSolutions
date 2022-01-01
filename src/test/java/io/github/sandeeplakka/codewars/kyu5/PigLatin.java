@@ -29,11 +29,13 @@ public class PigLatin {
         assertEquals("elloHay orldway !", pigIt("Hello world !"));
         assertEquals("hisTay siay ymay tringsay", pigIt("This is my string"));
         assertEquals("Oay emporatay oay oresmay !", pigIt("O tempora o mores !"));
+        assertEquals("uisQay ustodietcay psosiay ustodescay ?", pigIt("Quis custodiet ipsos custodes ?"));
 
         assertEquals("igPay atinlay siay oolcay", mindBlownVersion("Pig latin is cool"));
         assertEquals("elloHay orldway !", mindBlownVersion("Hello world !"));
         assertEquals("hisTay siay ymay tringsay", mindBlownVersion("This is my string"));
         assertEquals("Oay emporatay oay oresmay !", mindBlownVersion("O tempora o mores !"));
+        assertEquals("uisQay ustodietcay psosiay ustodescay ?", mindBlownVersion("Quis custodiet ipsos custodes ?"));
 
     }
 
