@@ -41,6 +41,9 @@ public class Primorial {
         assertEquals("30030", numPrimorial(6));
         assertEquals("9699690", numPrimorial(8));
         assertEquals("223092870", numPrimorial(9));
+        assertEquals("6469693230", numPrimorial(10));
+        assertEquals("32589158477190044730", numPrimorial(16));
+
         assertEquals("98203290177655808293675134056" +
                 "234283664486972759652529377598564735621083" +
                 "477542865705101239868112564727154902018970" +
@@ -85,7 +88,7 @@ public class Primorial {
         int till = 100;
         List<BigInteger> primes;
         do {
-            System.out.println("Getting primes in " + till);
+            //System.out.println("Getting primes in " + till);
             primes = getPrimes(till);
             till *= 2;
         } while (primes.size() < n);
