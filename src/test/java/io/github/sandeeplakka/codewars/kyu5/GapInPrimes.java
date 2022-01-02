@@ -90,4 +90,8 @@ class GapInPrimes {
         }
         return null;
     }
+
+    //TODO : Need to write a better algorithm to get primes in the range m,n
+    // instead of finding whole range of n if there is algorithm exists
+
 }
