@@ -2,11 +2,13 @@ package io.github.sandeeplakka.codewars.kyu5;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 /*
 
@@ -24,13 +26,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PrimesInNumbers {
 
     @Test
-    public void test_getPrimes(){
-        assertEquals("(2**5)(5)(7**2)(11)",getPrimes(86240));
+    public void test_getPrimes() {
+        assertEquals("(2**5)(5)(7**2)(11)", getPrimes(86240));
         assertEquals("(7919)", getPrimes(7919));
         assertEquals("(2**2)(3**3)(5)(7)(11**2)(17)", getPrimes(7775460));
-        assertEquals("(7**2)(11)(43)(643)",getPrimes(14902811));
-        assertEquals("(2**3)(191)(19489)",getPrimes(29779192));
-        assertEquals("(7537)(123863)",getPrimes(933555431));
+        assertEquals("(7**2)(11)(43)(643)", getPrimes(14902811));
+        assertEquals("(2**3)(191)(19489)", getPrimes(29779192));
+        assertTimeout(Duration.ofMillis(16000), () -> assertEquals("(7537)(123863)", getPrimes(933555431)));
     }
 
     public String getPrimes(int number){
