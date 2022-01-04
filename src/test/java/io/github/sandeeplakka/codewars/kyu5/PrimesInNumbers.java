@@ -32,50 +32,83 @@ public class PrimesInNumbers {
         assertEquals("(2**2)(3**3)(5)(7)(11**2)(17)", getPrimes(7775460));
         assertEquals("(7**2)(11)(43)(643)", getPrimes(14902811));
         assertEquals("(2**3)(191)(19489)", getPrimes(29779192));
-        assertTimeout(Duration.ofMillis(16000), () -> assertEquals("(7537)(123863)", getPrimes(933555431)));
+        assertTimeout(Duration.ofMillis(12000), () -> assertEquals("(7537)(123863)", getPrimes(933555431)));
     }
 
-    public String getPrimes(int number){
+    @Test
+    public void test_factors() {
+        assertEquals("(2**5)(5)(7**2)(11)", factors(86240));
+        assertEquals("(7919)", factors(7919));
+        assertEquals("(2**2)(3**3)(5)(7)(11**2)(17)", factors(7775460));
+        assertEquals("(7**2)(11)(43)(643)", factors(14902811));
+        assertEquals("(2**3)(191)(19489)", factors(29779192));
+
+        assertTimeout(Duration.ofMillis(12000), () -> assertEquals("(7537)(123863)", factors(933555431)));
+    }
+
+    //to the point
+    //better than getPrimes(int number) interms of time and space (may not be in Big O terms but still better)
+    public static String factors(int number) {
+        StringBuilder result = new StringBuilder();
+        for (int factor = 2; factor <= number; ++factor) {
+            int count;
+            for (count = 0; number % factor == 0; ++count) {
+                number /= factor;
+            }
+            if (count > 0) {
+                result.append("(").append(factor).append((count > 1 ? "**" + count : "")).append(")");
+            }
+        }
+        return result.toString();
+    }
+
+    //old school version
+    public String getPrimes(int number) {
         //long start = System.currentTimeMillis();
-        boolean[] primes = new boolean[number+1];
+        boolean[] primes = new boolean[number + 1];
         Map<Integer, Integer> powers = new LinkedHashMap<>();
         StringBuilder primeFactors = new StringBuilder();
         Arrays.fill(primes, true);
 
-        primes[0] = false;
-        primes[1] = false;
-
-        for(int i = 2; i*i <= number; i++){
-            int num=number;
-            int power = 0;
-            while (num %i == 0){
-                power++;
-                num /=i;
-            }
-            for(int k = i*i ; k <= number; k+=i){
-                primes[k] = false;
-            }
-        }
-        for (int i = 2; number > 0 && i <= number; i++) {
-            //System.out.println("checking for number : " + number);
+        int i = 2;
+        for (; i * i <= number; i++) {
             if (!primes[i]) continue;
-            int power = 0;
-            //int num = number;
-            while (number % i == 0) {
-                number /= i;
-                power++;
+            if (number % i != 0) continue;
+            int maxPower = 0;
+            //int num=number;
+            for (int k = i * i; k <= number; k += i) {
+                primes[k] = false;
+                int power = 0;
+                while (number % i == 0) {
+                    number /= i;
+                    power++;
+                }
+                if (power > maxPower) maxPower = power;
             }
-            if(power > 0 ) powers.put(i,power);
-            //if (power > 0) primeFactors.append("(" + (power > 1 ? i + "**" + power + ")" : i + ")"));
+            if (primes[i] && maxPower > 0) {
+                powers.put(i, maxPower);
+                //number /= (int)Math.pow(i,maxPower);
+            }
         }
-        powers.entrySet().stream().forEach(entry -> {
-            primeFactors.append("(").append(entry.getKey());
-            if(entry.getValue() > 1) primeFactors.append("**").append(entry.getValue());
+
+        for (; i <= number; i++) {
+            if (!primes[i]) continue;
+            if (number % i == 0) {
+                number /= i;
+                powers.put(i, 1);
+            }
+
+        }
+
+
+        powers.forEach((k, v) -> {
+
+            primeFactors.append("(").append(k);
+            if (v > 1) primeFactors.append("**").append(v);
             primeFactors.append(")");
         });
 
-        //long end = System.currentTimeMillis();
-        //System.out.println("Took : "+(end-start)+" ms ");
+        //System.out.println("Took : "+(System.currentTimeMillis()-start)+" ms ");
         return primeFactors.toString();
     }
 }
