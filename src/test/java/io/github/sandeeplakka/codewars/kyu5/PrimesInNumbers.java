@@ -32,7 +32,14 @@ public class PrimesInNumbers {
         assertEquals("(2**2)(3**3)(5)(7)(11**2)(17)", getPrimes(7775460));
         assertEquals("(7**2)(11)(43)(643)", getPrimes(14902811));
         assertEquals("(2**3)(191)(19489)", getPrimes(29779192));
-        assertTimeout(Duration.ofMillis(12000), () -> assertEquals("(7537)(123863)", getPrimes(933555431)));
+        assertEquals("(3)(17**2)(31)(677)", getPrimes(17 * 17 * 93 * 677));
+        assertEquals("(2**4)(3)(11)(43)(15073)", getPrimes(342217392));
+        assertEquals("(7)(5113051)", getPrimes(35791357));
+        assertEquals("(2)(3**2)(5)(7**2)(11)(13)(17)(73)", getPrimes(782611830));
+        assertEquals("(2**8)(3**4)(17)(31)(71)", getPrimes(775878912));
+        assertEquals("(2)(41**2)(143813)", getPrimes(483499306));
+
+        assertTimeout(Duration.ofMillis(1000), () -> assertEquals("(7537)(123863)", getPrimes(933555431)));
     }
 
     @Test
@@ -42,8 +49,14 @@ public class PrimesInNumbers {
         assertEquals("(2**2)(3**3)(5)(7)(11**2)(17)", factors(7775460));
         assertEquals("(7**2)(11)(43)(643)", factors(14902811));
         assertEquals("(2**3)(191)(19489)", factors(29779192));
+        assertEquals("(3)(17**2)(31)(677)", factors(17 * 17 * 93 * 677));
+        assertEquals("(2**4)(3)(11)(43)(15073)", factors(342217392));
+        assertEquals("(7)(5113051)", factors(35791357));
+        assertEquals("(2)(3**2)(5)(7**2)(11)(13)(17)(73)", factors(782611830));
+        assertEquals("(2**8)(3**4)(17)(31)(71)", factors(775878912));
+        assertEquals("(2)(41**2)(143813)", factors(483499306));
 
-        assertTimeout(Duration.ofMillis(12000), () -> assertEquals("(7537)(123863)", factors(933555431)));
+        assertTimeout(Duration.ofMillis(1000), () -> assertEquals("(7537)(123863)", factors(933555431)));
     }
 
     //to the point
