@@ -14,7 +14,7 @@ Write a function that takes a string of braces,
 and determines if the order of the braces is valid.
 It should return true if the string is valid, and false if it's invalid.
 
-This Kata is similar to the Valid Parentheses Kata,
+This Kata is similar to the Valid Parentheses Kata ( See kyu5.ValidParantheses implementation),
 but introduces new characters: brackets [], and curly braces {}.
 
 All input strings will be nonempty, and will only consist of parentheses,
