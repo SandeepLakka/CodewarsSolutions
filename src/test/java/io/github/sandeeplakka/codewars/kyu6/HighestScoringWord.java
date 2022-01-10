@@ -55,11 +55,15 @@ public class HighestScoringWord {
     public String high(String s) {
         return Arrays.stream(s.split(" "))
                 .sorted(Comparator
-                        .comparing(HighestScoringWord::getScore).thenComparing((left, right) -> -1)).reduce((s1, s2) -> s2).get();
+                        .comparing(HighestScoringWord::getScore)
+                        .thenComparing((left, right) -> -1))
+                .reduce((s1, s2) -> s2).get();
     }
 
     public String cleverAndClean(String s) {
-        return Arrays.stream(s.split(" ")).max(Comparator.comparingInt(HighestScoringWord::getScore)).get();
+      return Arrays.stream(s.split(" "))
+              .max(Comparator.comparingInt(HighestScoringWord::getScore))
+              .get();
     }
 
     private static int getScore(String word) {
