@@ -13,6 +13,41 @@ public class DeadFish {
     public void tests() {
         assertArrayEquals(new int[]{8, 64}, parse("iiisdoso"));
         assertArrayEquals(new int[]{8, 64, 3600}, parse("iiisdosodddddiso"));
+    }
+
+    @Test
+    public void testsV2() {
+        assertArrayEquals(new int[]{0}, parse("ssisdoi"));
+        assertArrayEquals(new int[]{0, 0}, parse("dsdosod"));
+        assertArrayEquals(new int[]{1, 1}, parse("iossois"));
+        assertArrayEquals(new int[]{0, 1}, parse("oiosisi"));
+        assertArrayEquals(new int[]{0, 0, -1}, parse("oodoids"));
+        assertArrayEquals(new int[]{-1, -2}, parse("siddodo"));
+        assertArrayEquals(new int[]{1, 1, 1}, parse("sissooo"));
+        assertArrayEquals(new int[]{}, parse("isdsiid"));
+        assertArrayEquals(new int[]{-1, 2}, parse("dosiosd"));
+        assertArrayEquals(new int[]{-1, -1}, parse("doisdoi"));
+        assertArrayEquals(new int[]{1, 1, 1}, parse("ioidsoo"));
+        assertArrayEquals(new int[]{0, 1}, parse("oiidido"));
+        assertArrayEquals(new int[]{0}, parse("iiddoss"));
+        assertArrayEquals(new int[]{1}, parse("sssdsoi"));
+        assertArrayEquals(new int[]{1}, parse("iddssso"));
+        assertArrayEquals(new int[]{1, 0, 0}, parse("iodosod"));
+        assertArrayEquals(new int[]{-1, 1, 1, 1, 1}, parse("dosoooo"));
+        assertArrayEquals(new int[]{0}, parse("ossiids"));
+        assertArrayEquals(new int[]{-1}, parse("ssdodsd"));
+        assertArrayEquals(new int[]{0}, parse("ssidsoi"));
+        assertArrayEquals(new int[]{0, 1}, parse("sdsdoio"));
+        assertArrayEquals(new int[]{1, 1, 1}, parse("siooido"));
+        assertArrayEquals(new int[]{1, 0}, parse("dsssodo"));
+        assertArrayEquals(new int[]{1, -1}, parse("isodsdo"));
+        assertArrayEquals(new int[]{0, 1, 1}, parse("oisoosi"));
+        assertArrayEquals(new int[]{-1, -1, 1}, parse("doosido"));
+        assertArrayEquals(new int[]{-1, 0}, parse("sdoiodd"));
+        assertArrayEquals(new int[]{-1}, parse("isdsdod"));
+        assertArrayEquals(new int[]{1, 1, 1}, parse("ioodiod"));
+        assertArrayEquals(new int[]{1, 16}, parse("isoisso"));
+        assertArrayEquals(new int[]{0, -2, -2}, parse("osddooi"));
 
     }
 
