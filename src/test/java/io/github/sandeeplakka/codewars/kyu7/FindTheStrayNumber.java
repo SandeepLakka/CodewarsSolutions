@@ -2,7 +2,7 @@ package io.github.sandeeplakka.codewars.kyu7;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -51,6 +51,6 @@ class FindTheStrayNumber {
 
     //xor does the magic
     static int stray(int[] numbers) {
-        return Arrays.stream(numbers).reduce((left, right) -> left ^ right).getAsInt();
+        return IntStream.of(numbers).reduce((left, right) -> left ^ right).orElse(-1);
     }
 }
