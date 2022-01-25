@@ -47,23 +47,72 @@ and demovingShift(v, 1) returns u.
 Categories : Fundamentals, Ciphers, Algorithms, Cryptography, Security, Strings, Utilities
 
  */
-//TODO Implementation pending
 public class CaesarCipher {
 
     @Test
     public void test1() {
         String u = "I should have known that you would have a perfect answer for me!!!";
         List<String> v = Arrays.asList("J vltasl rlhr ", "zdfog odxr ypw", " atasl rlhr p ", "gwkzzyq zntyhv", " lvz wp!!!");
-        assertEquals(v, movingShift(u, 1));
-        assertEquals(u, demovingShift(movingShift(u, 1), 1));
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
+        assertEquals(v, CaesarCipher.movingShift(u, 1));
     }
 
     @Test
     public void test2() {
+        String u = "O CAPTAIN! my Captain! our fearful trip is done;";
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
+    }
+
+    @Test
+    public void test3() {
+        String u = "For you bouquets and ribbon'd wreaths--for you the shores a-crowding;";
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
+    }
+
+    @Test
+    public void test4() {
+        String u = "Exult, O shores, and ring, O bells! But I, with mournful tread, Walk the deck my Captain lies, Fallen cold and dead. ";
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
+    }
+
+    @Test
+    public void testa() {
         String u = " uoxIirmoveNreefckgieaoiEcooqo";
         List<String> v = Arrays.asList(" xscOp", "zvygqA", "ftuwud", "adaxmh", "Edqrut");
-        assertEquals(v, movingShift(u, 2));
-        assertEquals(u, demovingShift(movingShift(u, 2), 2));
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 2), 2));
+        assertEquals(v, CaesarCipher.movingShift(u, 2));
+    }
+
+    @Test
+    public void testb() {
+        String u = "uaoQop jx eh osr okaKv vzagzwpxagokBKriipmc U";
+        List<String> v = Arrays.asList("wdsVuw sh", " qu dii h", "evGs uzbi", "caudhoxuM", "Wewxfdu O");
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 2), 2));
+        assertEquals(v, CaesarCipher.movingShift(u, 2));
+    }
+
+    @Test
+    public void testc() {
+        String u = "kgpiqislyhvmffdzlyehjiIteAaaotcoapk bbMgaHlda";
+        List<String> v = Arrays.asList("mjtnwpaui", "shztutqdr", "ycffGseBc", "dsyiviyu ", "noAvqYdwu");
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 2), 2));
+        assertEquals(v, CaesarCipher.movingShift(u, 2));
+    }
+
+    @Test
+    public void testd() {
+        String u = "abcdefghjuty";
+        List<String> v = Arrays.asList("bdf", "hjl", "nps", "eek", "");
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
+        assertEquals(v, CaesarCipher.movingShift(u, 1));
+    }
+
+    @Test
+    public void teste() {
+        String u = "abcdefghjuty1234";
+        List<String> v = Arrays.asList("bdfh", "jlnp", "seek", "1234", "");
+        assertEquals(u, CaesarCipher.demovingShift(CaesarCipher.movingShift(u, 1), 1));
+        assertEquals(v, CaesarCipher.movingShift(u, 1));
     }
 
     public static List<String> movingShift(String s, int shift) {
@@ -80,27 +129,17 @@ public class CaesarCipher {
                 builder.append(s.charAt(i));
             }
         }
-        System.out.println(">" + builder.toString() + "<");
         List<String> result = new ArrayList<>();
 
-        int i = 0;
-        while (i < builder.length()) {
-            int endL = i + builder.length() / 5 + 1 > builder.length() ? builder.length() : i + builder.length() / 5 + 1;
-            System.out.println("-- >" + builder.substring(i, endL) + "<");
-            result.add(builder.substring(i, endL));
-            i = endL;
-        }
-        return result;
+        return splitString(builder);
     }
 
 
     public static String demovingShift(List<String> s, int shift) {
-        //
         int idx = 0;
         StringBuilder builder = new StringBuilder();
         for (String str : s) {
             for (int i = 0; i < str.length(); i++) {
-                System.out.println("char is >" + str.charAt(i) + "<");
                 if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
                     char ch = (char) ('z' + (str.charAt(i) - 'z' - shift - i - idx) % 26);
                     builder.append(ch);
@@ -114,5 +153,37 @@ public class CaesarCipher {
             idx += str.length();
         }
         return builder.toString();
+    }
+
+    @Test
+    public void testSplitString() {
+        splitString(new StringBuilder("wdsVuw sh qu dii hevGs uzbicau"));
+        splitString(new StringBuilder("mjtnwpauishztutqdrycffGseBcdsyiviyu noAvqYdwu"));
+
+    }
+
+    //help from friend @sruthiReddy65 ; Thanks buddy
+    public static List<String> splitString(StringBuilder input) {
+        int length = input.length();
+        List<String> list = new ArrayList<>();
+        if (length % 5 == 0) {
+            int div = length / 5;
+            for (int i = 0; i < length; i = i + div) {
+                list.add(input.substring(i, i + div));
+            }
+        } else {
+            int div = length / 5;
+            int i = 0;
+            int sizeOfParts = div + 1;
+            while (i <= length) {
+                if (i + sizeOfParts > length) {
+                    list.add(input.substring(i));
+                } else {
+                    list.add(input.substring(i, i + sizeOfParts));
+                }
+                i = i + sizeOfParts;
+            }
+        }
+        return list;
     }
 }
