@@ -31,9 +31,9 @@ Categories : Fundamentals, Numbers
 class Bob {
     @Test
     public void testBob() {
-        assertEquals(0, Bob.enough(10, 5, 5), "Should return 0.");
-        assertEquals(10, Bob.enough(100, 60, 50), "Should return 10.");
-        assertEquals(0, Bob.enough(20, 5, 5), "Should return 0.");
+        assertEquals(0, enough(10, 5, 5), "Should return 0.");
+        assertEquals(10, enough(100, 60, 50), "Should return 10.");
+        assertEquals(0, enough(20, 5, 5), "Should return 0.");
     }
 
     static int enough(final int capacity, final int alreadyOn, final int waiting) {
