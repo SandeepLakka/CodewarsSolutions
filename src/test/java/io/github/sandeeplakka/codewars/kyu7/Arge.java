@@ -55,9 +55,10 @@ class Arge {
     public static int nbYear(int p0, double percent, int aug, int p) {
         int years = 0;
         if (p0 > p) return 0;
+        double pc = percent / 100;
         int pcur = p0;
         do {
-            pcur += pcur * percent / 100 + aug;
+            pcur += pcur * pc + aug;
             years++;
         } while (p > pcur);
         return years;
