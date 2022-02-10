@@ -44,6 +44,7 @@ public class SumFct {
         assertEquals(r, perimeterV1(BigInteger.valueOf(500)));
     }
 
+    //better approach than top down with less space used
     public static BigInteger perimeterV1(BigInteger n) {
         return Stream.generate(new FibonacciGenerator()::next)
                 .limit(n.longValueExact() + 1)
