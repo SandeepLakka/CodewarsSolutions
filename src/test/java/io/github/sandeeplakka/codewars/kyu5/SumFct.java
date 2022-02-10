@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,31 +13,57 @@ public class SumFct {
     @Test
     public void test1() {
         assertEquals(BigInteger.valueOf(80), perimeter(BigInteger.valueOf(5)));
+        assertEquals(BigInteger.valueOf(80), perimeterV1(BigInteger.valueOf(5)));
+
     }
 
     @Test
     public void test2() {
         assertEquals(BigInteger.valueOf(216), perimeter(BigInteger.valueOf(7)));
+        assertEquals(BigInteger.valueOf(216), perimeterV1(BigInteger.valueOf(7)));
     }
 
     @Test
     public void test3() {
         assertEquals(BigInteger.valueOf(14098308), perimeter(BigInteger.valueOf(30)));
+        assertEquals(BigInteger.valueOf(14098308), perimeterV1(BigInteger.valueOf(30)));
     }
 
     @Test
     public void test4() {
         BigInteger r = new BigInteger("6002082144827584333104");
-        assertEquals(r, SumFct.perimeter(BigInteger.valueOf(100)));
+        assertEquals(r, perimeter(BigInteger.valueOf(100)));
+        assertEquals(r, perimeterV1(BigInteger.valueOf(100)));
     }
 
     @Test
     public void test5() {
         BigInteger r = new BigInteger("2362425027542282167538999091770205712168" +
                 "371625660854753765546783141099308400948230006358531927265833165504");
-        assertEquals(r, SumFct.perimeter(BigInteger.valueOf(500)));
+        assertEquals(r, perimeter(BigInteger.valueOf(500)));
+        assertEquals(r, perimeterV1(BigInteger.valueOf(500)));
     }
 
+    public static BigInteger perimeterV1(BigInteger n) {
+        return Stream.generate(new FibonacciGenerator()::next)
+                .limit(n.longValueExact() + 1)
+                .reduce(BigInteger::add)
+                .orElse(BigInteger.ZERO)
+                .multiply(BigInteger.valueOf(4));
+    }
+
+    private static class FibonacciGenerator {
+        private BigInteger nMinusTwo = BigInteger.ONE;
+        private BigInteger nMinusOne = BigInteger.ZERO;
+
+        public BigInteger next() {
+            final BigInteger n = nMinusTwo.add(nMinusOne);
+            nMinusTwo = nMinusOne;
+            nMinusOne = n;
+
+            return n;
+        }
+    }
 
     public static BigInteger perimeter(BigInteger n) {
 
