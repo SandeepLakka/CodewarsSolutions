@@ -24,38 +24,48 @@ public class Paper {
     @Test
     public void test1() {
         assertEquals(25, paperWork(5, 5), "Failed at paperWork(5,5)");
+        assertEquals(25, paperWorkV1(5, 5), "Failed at paperWork(5,5)");
     }
 
 
     @Test
     public void test2() {
         assertEquals(0, paperWork(5, -5), "Failed at paperWork(5,-5)");
+        assertEquals(0, paperWorkV1(5, -5), "Failed at paperWork(5,-5)");
     }
 
     @Test
     public void test3() {
         assertEquals(0, paperWork(-5, -5), "Failed at paperWork(-5,-5)");
+        assertEquals(0, paperWorkV1(-5, -5), "Failed at paperWork(-5,-5)");
     }
 
     @Test
     public void test4() {
         assertEquals(0, paperWork(-5, 5), "Failed at paperWork(-5,5)");
+        assertEquals(0, paperWorkV1(-5, 5), "Failed at paperWork(-5,5)");
     }
 
     @Test
     public void test5() {
         assertEquals(0, paperWork(5, 0), "Failed at paperWork(5,0)");
+        assertEquals(0, paperWorkV1(5, 0), "Failed at paperWork(5,0)");
     }
 
     @Test
     public void test6() {
         assertEquals(0, paperWork(5, -5), "Failed at paperWork(5,-5)");
+        assertEquals(0, paperWorkV1(5, -5), "Failed at paperWork(5,-5)");
     }
 
     //need to learn the bit masking technique for this
+    //update: please check below paperworkV1 method for bit manipulated solution
     public static int paperWork(int n, int m) {
         return (n < 0 || m < 0) ? 0 : n * m;
     }
 
-
+    // n>>31 will give -1 for negatives, 0 for non negatives ( 0 and all numbers forward )
+    public static int paperWorkV1(int n, int m) {
+        return (n >> 31) == -1 || (m >> 31) == -1 ? 0 : n * m;
+    }
 }
