@@ -36,11 +36,19 @@ Categories : Fundamentals, Lists, Data Structures
  */
 public class ListLength {
     @Test
-    public void basicTests() {
+    public void basicTestsForIterativeSolution() {
         assertEquals(0, lengthIterative(null));
         assertEquals(3, lengthIterative(listFromArray(1, 2, 3)));
         assertEquals(3, lengthIterative(listFromArray("aaa", "b", "abc")));
         assertEquals(4, lengthIterative(listFromArray(1, 2, 3, 4)));
+    }
+
+    @Test
+    public void basicTestForRecursiveSolution() {
+        assertEquals(0, lengthRecur(null));
+        assertEquals(3, lengthRecur(listFromArray(1, 2, 3)));
+        assertEquals(3, lengthRecur(listFromArray("aaa", "b", "abc")));
+        assertEquals(4, lengthRecur(listFromArray(1, 2, 3, 4)));
     }
 
     static <T> int lengthIterative(Node head) {
@@ -51,6 +59,11 @@ public class ListLength {
             head = head.next;
         }
         return length;
+    }
+
+    static <T> int lengthRecur(Node head) {
+        if (head == null) return 0;
+        return 1 + lengthRecur(head.next);
     }
 }
 
