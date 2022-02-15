@@ -2,6 +2,10 @@ package io.github.sandeeplakka.codewars.kyu7;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,6 +36,10 @@ public class AnagramDetector {
         assertTrue(isAnagram("foefet", "toffee"));
         assertTrue(isAnagram("Buckethead", "DeathCubeK"));
         assertTrue(isAnagram("Twoo", "Woot"));
+
+        assertTrue(isAnagramV1("foefet", "toffee"));
+        assertTrue(isAnagramV1("Buckethead", "DeathCubeK"));
+        assertTrue(isAnagramV1("Twoo", "Woot"));
     }
 
     @Test
@@ -40,6 +48,9 @@ public class AnagramDetector {
         assertFalse(isAnagram("ound", "round"));
         assertFalse(isAnagram("apple", "pale"));
 
+        assertFalse(isAnagramV1("dumble", "bumble"));
+        assertFalse(isAnagramV1("ound", "round"));
+        assertFalse(isAnagramV1("apple", "pale"));
     }
 
     //naive
@@ -58,5 +69,22 @@ public class AnagramDetector {
             if (!isFound) return false;
         }
         return true;
+    }
+
+    //better
+    public static boolean isAnagramV1(String test, String original) {
+        // your code goes here
+        Map<Character, Long> testLetterCount = test.toLowerCase().chars()
+                .mapToObj(value -> (char) value)
+                .collect(Collectors.groupingBy(Function.identity(),
+                        Collectors.counting()));
+
+        Map<Character, Long> originalLetterCount = original.toLowerCase().chars()
+                .mapToObj(value -> (char) value)
+                .collect(Collectors.groupingBy(Function.identity(),
+                        Collectors.counting()));
+
+        // your code goes here
+        return testLetterCount.equals(originalLetterCount);
     }
 }
