@@ -168,6 +168,23 @@ public class SudokuValidator {
         assertFalse(check(sudoku));
     }
 
+    @Test
+    public void test7() {
+        int[][] sudoku = {
+                {1, 2, 3, 4, 5, 6, 7, 8, 9},
+                {4, 5, 6, 7, 8, 9, 1, 2, 3},
+                {7, 8, 9, 1, 2, 3, 4, 5, 6},
+                {1, 2, 3, 4, 5, 6, 7, 8, 9},
+                {4, 5, 6, 7, 8, 9, 1, 2, 3},
+                {7, 8, 9, 1, 2, 3, 4, 5, 6},
+                {1, 2, 3, 4, 5, 6, 7, 8, 9},
+                {4, 5, 6, 7, 8, 9, 1, 2, 3},
+                {7, 8, 9, 1, 2, 3, 4, 5, 6}
+        };
+        assertFalse(check(sudoku));
+
+    }
+
     public static boolean check(int[][] sudoku) {
         //do your magic
         for (int i = 0; i < 9; i++) {
