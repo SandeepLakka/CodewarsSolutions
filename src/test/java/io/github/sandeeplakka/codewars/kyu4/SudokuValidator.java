@@ -2,8 +2,9 @@ package io.github.sandeeplakka.codewars.kyu4;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -185,50 +186,73 @@ public class SudokuValidator {
 
     }
 
+    @Test
+    public void test8() {
+        int[][] sudoku = {
+                {3, 2, 11, 5, 4, 6, 8, 9, 7},
+                {9, 8, 7, 2, 1, 3, 5, 6, 4},
+                {6, 5, 4, 8, 7, 9, 2, 3, 1},
+                {7, 6, 5, 9, 8, 1, 3, 4, 2},
+                {4, 3, 2, 6, 5, 7, 9, 1, 8},
+                {1, 9, 8, 3, 2, 4, 6, 7, 5},
+                {5, 4, 3, 7, 6, 8, 1, 2, 9},
+                {2, 1, 9, 4, 3, 5, 7, 8, 6},
+                {8, 7, 6, 1, 9, 2, 4, 5, 13},
+        };
+        assertFalse(check(sudoku), "booooo....");
+    }
+
     public static boolean check(int[][] sudoku) {
         //do your magic
-        for (int i = 0; i < 9; i++) {
-            Set<Integer> values = new HashSet<Integer>() {{
-                add(1);
-                add(2);
-                add(3);
-                add(4);
-                add(5);
-                add(6);
-                add(7);
-                add(8);
-                add(9);
-            }};
-            for (int j = 0; j < 9; j++) {
-                if (sudoku[i][j] == 0 || !values.contains(sudoku[i][j])) return false;
-                values.remove(sudoku[i][j]);
-            }
-            if (!values.isEmpty()) return false;
+        final int SIZE = sudoku.length;
+
+        //Rows check
+        if (validateLine(sudoku, SIZE, true)) return false;
+
+        //Columns check
+        if (validateLine(sudoku, SIZE, false)) return false;
+
+        //Sub squares check
+        final int SUB_SQUARE_SIZE = (int) Math.sqrt(SIZE);
+        if (SUB_SQUARE_SIZE * SUB_SQUARE_SIZE != SIZE) {
+            throw new RuntimeException("Sudoku is not an NXN board");
         }
-
-        for (int i = 0; i < 9; i += 3) {
-            for (int j = 0; j < 9; j += 3) {
-                Set<Integer> values = new HashSet<Integer>() {{
-                    add(1);
-                    add(2);
-                    add(3);
-                    add(4);
-                    add(5);
-                    add(6);
-                    add(7);
-                    add(8);
-                    add(9);
-                }};
-
-                for (int x = i; x < i + 3; x++) {
-                    for (int y = j; y < j + 3; y++) {
-                        if (!values.contains(sudoku[x][y])) return false;
-                        values.remove(sudoku[x][y]);
+        for (int i = 0; i < SIZE; i += SUB_SQUARE_SIZE) {
+            for (int j = 0; j < SIZE; j += SUB_SQUARE_SIZE) {
+                Set<Integer> values = IntStream.rangeClosed(1, SIZE)
+                        .boxed()
+                        .collect(Collectors.toSet());
+                for (int x = 0; x < SUB_SQUARE_SIZE; x++) {
+                    for (int y = 0; y < SUB_SQUARE_SIZE; y++) {
+                        if (!values.contains(sudoku[i + x][j + y])) return false;
+                        values.remove(sudoku[i + x][j + y]);
                     }
                 }
                 if (!values.isEmpty()) return false;
             }
         }
         return true;
+    }
+
+    private static boolean validateLine(int[][] sudoku, int SIZE, boolean isRow) {
+        for (int i = 0; i < SIZE; i++) {
+            Set<Integer> values = IntStream.rangeClosed(1, SIZE)
+                    .boxed()
+                    .collect(Collectors.toSet());
+            for (int j = 0; j < SIZE; j++) {
+                int row, column;
+                if (isRow) {
+                    row = i;
+                    column = j;
+                } else {
+                    row = j;
+                    column = i;
+                }
+                if (sudoku[row][column] == 0 || !values.contains(sudoku[row][column])) return true;
+                values.remove(sudoku[row][column]);
+            }
+            if (!values.isEmpty()) return true;
+        }
+        return false;
     }
 }
