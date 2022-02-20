@@ -3,6 +3,7 @@ package io.github.sandeeplakka.codewars.kyu8;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /*
 get character from ASCII Value
@@ -33,9 +34,22 @@ public class Ascii {
         assertEquals(0, Character.compare('!', getChar(33)), "getChar should return a `char`");
     }
 
+    @Test
+    public void testExceptionals() {
+        assertThrows(IllegalArgumentException.class,
+                () -> getChar(-128));
+        assertThrows(IllegalArgumentException.class,
+                () -> getChar(256));
+
+    }
+
     public static char getChar(int c) {
         //Thought that there's some utility method to convert
         //Didn't think that typecasting is the only easier way
+        if (c < 0 || c > 255) {
+            throw new IllegalArgumentException("Invalid char code, " +
+                    "Please give code between 0 and 255 (both inclusive)");
+        }
         return (char) c;
     }
 }
