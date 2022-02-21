@@ -22,7 +22,7 @@ summation(8) -> 36
 
 Categories : Fundamentals, Loops, Control Flow, Basic Language Features
  */
-public class GrassHopper {
+public class GrassHopperSummation {
 
     @Test
     public void test1() {
