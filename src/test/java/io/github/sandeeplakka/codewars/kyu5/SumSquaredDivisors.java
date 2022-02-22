@@ -48,6 +48,8 @@ public class SumSquaredDivisors {
         assertEquals("[[287, 84100]]", listSquared(250, 500));
     }
 
+    //naive implementation
+    //can be optimized
     public static String listSquared(long m, long n) {
         List<Long[]> res = new ArrayList<>();
         //for each value from m to n inclusive:
