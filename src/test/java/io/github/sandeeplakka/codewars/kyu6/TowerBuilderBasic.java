@@ -1,9 +1,5 @@
 package io.github.sandeeplakka.codewars.kyu6;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledForJreRange;
-import org.junit.jupiter.api.condition.JRE;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
@@ -34,7 +30,8 @@ Categories : Fundamentals, Strings, Basic Language Features
  */
 public class TowerBuilderBasic {
 
-    @Test
+    //Commented out because the local and pipeline JDK is configured as JDK8
+/*    @Test
     @DisabledForJreRange(max = JRE.JAVA_8)
     public void BasicTests() {
         assertEquals(String.join(",", "*"),
@@ -50,7 +47,7 @@ public class TowerBuilderBasic {
                 String.join(",", towerBuilderV1(2)));
         assertEquals(String.join(",", "  *  ", " *** ", "*****"),
                 String.join(",", towerBuilderV1(3)));
-    }
+    }*/
 
     public void BasicTests1() {
         assertEquals(String.join(",", "*"),
@@ -63,7 +60,8 @@ public class TowerBuilderBasic {
 
 
     //JRE 11 version
-    public static String[] towerBuilder(int nFloors) {
+    //Commented out because the local and pipeline JDK is configured as JDK8
+/*    public static String[] towerBuilder(int nFloors) {
         System.out.println("floors : " + nFloors);
         int max = 2 * nFloors - 1;
         String[] tower = new String[nFloors];
@@ -78,10 +76,11 @@ public class TowerBuilderBasic {
             iter++;
         }
         return tower;
-    }
+    }*/
 
     //JRE 11 better version
-    public static String[] towerBuilderV1(int n) {
+    //Commented out because the local and pipeline JDK is configured as JDK8
+/*    public static String[] towerBuilderV1(int n) {
         String[] t = new String[n];
         String e;
 
@@ -90,7 +89,7 @@ public class TowerBuilderBasic {
             t[i] = (e = " ".repeat(n - i - 1)) + "*".repeat(i + i + 1) + e;
 
         return t;
-    }
+    }*/
 
     public static String[] towerBuilderV2(int nFloors) {
         String[] arr = new String[nFloors];
