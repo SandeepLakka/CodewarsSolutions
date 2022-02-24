@@ -4,6 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+Break camelCase
+
+Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  ""
+
+Categories : Fundamentals, Strings, Formatting, Algorithms
+ */
 class CamelCaseBreaker {
     @Test
     public void tests() {
