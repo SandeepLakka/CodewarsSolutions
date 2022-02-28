@@ -45,10 +45,7 @@ expressionsMatter(9,1,1)  ==>  return 18
 Explanation:
 After placing signs and brackets, the Maximum value obtained from the expression is 9 * (1+1) = 18.
 
-Fundamentals
-Algorithms
-Numbers
-Basic Language Features
+Categories : Fundamentals, Algorithms, Numbers, Basic Language Features
  */
 public class ExpressionsMatter {
     @Test
