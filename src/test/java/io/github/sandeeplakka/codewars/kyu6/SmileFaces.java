@@ -39,7 +39,7 @@ public class SmileFaces {
 
     @Test
     public void test1() {
-        List<String> a = new ArrayList<String>();
+        List<String> a = new ArrayList<>();
         a.add(":)");
         a.add(":D");
         a.add(":-}");
@@ -51,7 +51,7 @@ public class SmileFaces {
 
     @Test
     public void test2() {
-        List<String> a = new ArrayList<String>();
+        List<String> a = new ArrayList<>();
         a.add(":)");
         a.add("XD");
         a.add(":0}");
@@ -65,7 +65,7 @@ public class SmileFaces {
 
     @Test
     public void test4() {
-        List<String> a = new ArrayList<String>();
+        List<String> a = new ArrayList<>();
         a.add(":)");
         a.add(":D");
         a.add("X-}");
@@ -80,7 +80,7 @@ public class SmileFaces {
 
     @Test
     public void test5() {
-        List<String> a = new ArrayList<String>();
+        List<String> a = new ArrayList<>();
         a.add(":)");
         a.add(":)");
         a.add("x-]");
