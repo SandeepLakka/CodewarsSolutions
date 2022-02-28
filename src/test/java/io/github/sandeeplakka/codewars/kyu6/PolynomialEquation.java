@@ -53,9 +53,10 @@ public class PolynomialEquation {
     @Test
     public void tests_getNcX() {
         assertEquals(BigInteger.ONE, getNcX(100, 0));
-        assertEquals(BigInteger.valueOf((long) 2), getNcX(2, 1));
-        assertEquals(BigInteger.valueOf((long) 3), getNcX(3, 2));
-        assertEquals(BigInteger.valueOf((long) 6), getNcX(4, 2));
+        //Casting to long is redundant
+        assertEquals(BigInteger.valueOf(2), getNcX(2, 1));
+        assertEquals(BigInteger.valueOf(3), getNcX(3, 2));
+        assertEquals(BigInteger.valueOf(6), getNcX(4, 2));
     }
 
     public static String formula(int m) {
