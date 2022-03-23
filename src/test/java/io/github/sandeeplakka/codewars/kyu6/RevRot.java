@@ -1,5 +1,6 @@
 package io.github.sandeeplakka.codewars.kyu6;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Collectors;
@@ -43,6 +44,7 @@ Categories : Fundamentals
 class RevRot {
 
     @Test
+    @DisplayName("Fixed tests")
     public void tests() {
         //
         assertEquals("", revRot("1234", 0));
@@ -52,6 +54,29 @@ class RevRot {
         assertEquals("330479108928157", revRot(s, 5));
     }
 
+    @Test
+    @DisplayName("Fixed tests v2")
+    public void testsV2() {
+        String s = "73304991087281576455176044327690580265896";
+        assertEquals("1994033775182780067155464327690480265895", revRot(s, 8));
+        s = "73304991087281576455176044327690580265896896028";
+        assertEquals("1994033775182780067155464327690480265895", revRot(s, 8));
+        s = "73304991087281576455176044327690580265896896028126182265439";
+        assertEquals("3304991087781576455172509672344060265896896862281621820", revRot(s, 11));
+        s = "73304991087281576455176044327690580265896896028126182265439441215340989";
+        assertEquals("1827801994033776455176044325690580265896875622816218206939441215340984", revRot(s, 14));
+
+        s = "563000655734469485";
+        assertEquals("0365065073456944", revRot(s, 4));
+        s = "56300065573446948588855";
+        assertEquals("365000556437694854888", revRot(s, 3));
+        s = "56300065573446948588855200928875449742090";
+        assertEquals("000365437556584964255888092880794457", revRot(s, 6));
+        s = "56300065573446948588855200928875449742090827299285754137212";
+        assertEquals("3755600036546948588854457882900257280902479499285754132", revRot(s, 11));
+        s = "56300065573446948588855200928875449742090827299285754137212673841954794395427";
+        assertEquals("6300065575446948588355200928885449742097582992728062127314573841954797", revRot(s, 10));
+    }
 
     public static String revRot(String string, int sz) {
         if (sz <= 0 || string.isEmpty() || sz > string.length()) return "";
