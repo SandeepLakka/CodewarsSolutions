@@ -47,7 +47,7 @@ public class Equation {
         List<String> list = Arrays.asList(
                 "-x", "2x", "-3x^2", "5x^3", "+2x^4", "+4", "-5"
         );
-        list.stream().map(Term::new).forEach(System.out::println);
+        list.stream().map(Term::new).map(Term::differentiatedTerm).forEach(System.out::println);
 
     }
 
@@ -197,7 +197,7 @@ class Term {
             }
         }
         term.setCoefficient(term.getCoefficient() * term.getPower());
-        term.setPower(term.getPower() - 1);
+        term.setPower(term.getPower() == 0 ? 0 : term.getPower() - 1);
         return term;
     }
 }
