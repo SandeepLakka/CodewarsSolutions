@@ -31,6 +31,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Equation {
 
     @Test
+    public void moreTests() {
+        assertEquals(new BigInteger("9"), differentiate("x^2+3x+3", 3));
+        assertEquals(new BigInteger("1062300"), differentiate("1000x^2+300x+200", 531));
+        assertEquals(new BigInteger("87017"), differentiate("21x^2+35x+3", 2071));
+        assertEquals(new BigInteger("38509884"), differentiate("66x^3+3x^2+3", 441));
+        assertEquals(new BigInteger("5962009860"), differentiate("21x^4+3x^3", 414));
+        assertEquals(new BigInteger("-2480823269890144044"), differentiate("-21x^5+3x^3", 12398));
+        assertEquals(new BigInteger("-2469135813"), differentiate("-x^2+3x-3", 1234567908));
+        assertEquals(new BigInteger("-6045"), differentiate("-7x^5+22x^4-55x^3-94x^2+87x-56", -3));
+        assertEquals(new BigInteger("-3300404885229567012"), differentiate("-123x^5+3x", 8559));
+        assertEquals(new BigInteger("119769696967118"), differentiate("x^2", 59884848483559L));
+    }
+
+    @Test
     public void sampleTestsV1() {
         assertEquals(new BigInteger("12"), differentiate("12x+2", 3));
         assertEquals(new BigInteger("5"), differentiate("x^2-x", 3));
