@@ -42,6 +42,17 @@ public class Equation {
         assertEquals(new BigInteger("-6045"), differentiate("-7x^5+22x^4-55x^3-94x^2+87x-56", -3));
         assertEquals(new BigInteger("-3300404885229567012"), differentiate("-123x^5+3x", 8559));
         assertEquals(new BigInteger("119769696967118"), differentiate("x^2", 59884848483559L));
+
+        assertEquals(new BigInteger("9"), differentiateCleverly("x^2+3x+3", 3));
+        assertEquals(new BigInteger("1062300"), differentiateCleverly("1000x^2+300x+200", 531));
+        assertEquals(new BigInteger("87017"), differentiateCleverly("21x^2+35x+3", 2071));
+        assertEquals(new BigInteger("38509884"), differentiateCleverly("66x^3+3x^2+3", 441));
+        assertEquals(new BigInteger("5962009860"), differentiateCleverly("21x^4+3x^3", 414));
+        assertEquals(new BigInteger("-2480823269890144044"), differentiateCleverly("-21x^5+3x^3", 12398));
+        assertEquals(new BigInteger("-2469135813"), differentiateCleverly("-x^2+3x-3", 1234567908));
+        assertEquals(new BigInteger("-6045"), differentiateCleverly("-7x^5+22x^4-55x^3-94x^2+87x-56", -3));
+        assertEquals(new BigInteger("-3300404885229567012"), differentiateCleverly("-123x^5+3x", 8559));
+        assertEquals(new BigInteger("119769696967118"), differentiateCleverly("x^2", 59884848483559L));
     }
 
     @Test
@@ -49,6 +60,10 @@ public class Equation {
         assertEquals(new BigInteger("12"), differentiate("12x+2", 3));
         assertEquals(new BigInteger("5"), differentiate("x^2-x", 3));
         assertEquals(new BigInteger("-20"), differentiate("-5x^2+10x+4", 3));
+
+        assertEquals(new BigInteger("12"), differentiateCleverly("12x+2", 3));
+        assertEquals(new BigInteger("5"), differentiateCleverly("x^2-x", 3));
+        assertEquals(new BigInteger("-20"), differentiateCleverly("-5x^2+10x+4", 3));
     }
 
     @Test
@@ -68,7 +83,10 @@ public class Equation {
                 .map(Term::differentiatedTerm)
                 .map(term -> term.returnValue(3)).toArray(BigInteger[]::new));
 
+        assertArrayEquals(expectedVals, list.stream()
+                .map(term -> differentiateCleverly(term, 3)).toArray(BigInteger[]::new));
     }
+
 
     public static BigInteger differentiate(String equation, long x) {
         List<String> terms = new ArrayList<>();
@@ -87,6 +105,27 @@ public class Equation {
                 .map(Term::differentiatedTerm)
                 .map(differentiatedTerm -> differentiatedTerm.returnValue(x))
                 .reduce(BigInteger.ZERO, (result, value) -> result = result.add(value));
+    }
+
+    //kudos to this cleverness
+    public static BigInteger differentiateCleverly(String equation, long x) {
+        String[] terms = equation.replace("-", "+-").split("\\+");
+        BigInteger res = BigInteger.ZERO;
+        for (String term : terms) {
+            res = res.add(getTermResult(term, x));
+        }
+        return res;
+    }
+
+    private static BigInteger getTermResult(String part, long x) {
+        if (!part.contains("x")) {
+            return BigInteger.ZERO;
+        }
+        part = part.startsWith("x") ? part.replace("x", "1") : part.startsWith("-x") ? part.replace("-x", "-1") : part;
+        BigInteger[] arr = Arrays
+                .stream(part.replace("x", "").replace("^", " ").split(" "))
+                .map(BigInteger::new).toArray(BigInteger[]::new);
+        return arr.length == 1 ? arr[0] : arr[0].multiply(arr[1]).multiply(BigInteger.valueOf(x).pow(arr[1].intValue() - 1));
     }
 }
 
