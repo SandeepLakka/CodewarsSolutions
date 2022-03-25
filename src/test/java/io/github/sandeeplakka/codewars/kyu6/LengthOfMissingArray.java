@@ -30,7 +30,7 @@ Categories : Algorithms, Basic Language Features, Fundamentals, Arrays
 public class LengthOfMissingArray {
 
     @Test
-    public void BasicTests() {
+    public void basicTests() {
         assertEquals(3, getLengthOfMissingArray(new Object[][]{new Object[]{1, 2},
                 new Object[]{4, 5, 1, 1}, new Object[]{1}, new Object[]{5, 6, 7, 8, 9}}));
         assertEquals(2, getLengthOfMissingArray(new Object[][]{new Object[]{5, 2, 9},
@@ -42,6 +42,19 @@ public class LengthOfMissingArray {
                 new Object[]{'a', 'a', 'a', 'a', 'a', 'a'}}));
 
         assertEquals(0, getLengthOfMissingArray(new Object[][]{}));
+    }
+
+    @Test
+    public void moreTests() {
+        assertEquals(0, getLengthOfMissingArray(null));
+        assertEquals(0, getLengthOfMissingArray(new Object[][]{new Object[]{},
+                new Object[]{1, 2, 2}}));
+        assertEquals(0, getLengthOfMissingArray(new Object[][]{new Object[]{1, 2, 2},
+                null}));
+        assertEquals(0, getLengthOfMissingArray(new Object[][]{null,
+                new Object[]{1, 2, 2}}));
+        assertEquals(0, getLengthOfMissingArray(new Object[][]{new Object[]{1, 2, 2},
+                new Object[]{}}));
     }
 
     public static int getLengthOfMissingArray(Object[][] arrayOfArrays) {
