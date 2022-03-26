@@ -42,7 +42,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TheOffice {
+public class TheOfficePart1 {
     final static public String GET_OUT_NOW = "Get Out Now!";
     final static public String GOODWORK = "Nice Work Champ!";
 
@@ -61,7 +61,7 @@ public class TheOffice {
                 new Person("john", 2),
                 new Person("mr", 0)
         };
-        assertEquals("Get Out Now!", TheOffice.outed(meet, "laura"));
+        assertEquals("Get Out Now!", outed(meet, "laura"));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TheOffice {
                 new Person("john", 9),
                 new Person("mr", 8)
         };
-        assertEquals("Nice Work Champ!", TheOffice.outed(meet, "katie"));
+        assertEquals("Nice Work Champ!", outed(meet, "katie"));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class TheOffice {
                 new Person("john", 2),
                 new Person("mr", 8),
         };
-        assertEquals("Get Out Now!", TheOffice.outed(meet, "john"));
+        assertEquals("Get Out Now!", outed(meet, "john"));
     }
 
     public static String outed(Person[] meet, String boss) {
@@ -105,23 +105,23 @@ public class TheOffice {
                 .mapToInt(member -> member.getName().equals(boss) ? 2 * member.getHappiness() : member.getHappiness())
                 .average().orElse(0) > 5 ? GOODWORK : GET_OUT_NOW;
     }
+
+    class Person {
+        String name;    // team member's name
+        int happiness;  // happiness rating out of 10
+
+        public Person(String name, int happiness) {
+            this.name = name;
+            this.happiness = happiness;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getHappiness() {
+            return happiness;
+        }
+    }
 }
 
-class Person {
-    final String name;    // team member's name
-    final int happiness;  // happiness rating out of 10
-
-    public Person(String name, int happiness) {
-        this.name = name;
-        this.happiness = happiness;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getHappiness() {
-        return happiness;
-    }
-
-}
