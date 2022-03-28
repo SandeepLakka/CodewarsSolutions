@@ -36,14 +36,24 @@ public class Palindromes {
 
     @Test
     public void twistedTests() {
-        assertEquals(63, longestPalindrome("!loj!bu 7u y8z6rh.pqxwc3aka2r?t. .t?r2aka3cwxqp.hr6z8y u7 ub!jolnwc?jui tpt"));
-        assertEquals(34, longestPalindrome("ieic!e9ovmgf ld ee dl fgmvo9e!ciei6hx4vqozz!h zo0u7"));
-        assertEquals(54, longestPalindrome("9eu!mw fx5jzn7v9yr  e469fx!?11?!xf964e  ry9v7nzj5xf wm!u4x"));
-        assertEquals(68, longestPalindrome("?ihuw7bl?fn2t4 cvr5 oo9rv  zl.vct r sv6yuyjuk5m5  5m5kujyuy6vs r tcv.lz  vr9oo 5rvci?b cs rcet!"));
-        assertEquals(46, longestPalindrome("pe1ftuq?xt ur? m1hml0eppe0lmh1m ?ru tx?qutf1ep"));
-        assertEquals(51, longestPalindrome("wyz0z jj8mswgu e0q8 f29o p!2glzs gc.q6f2nkukn2f6q.cg szlg2!p o92f 8q!tp"));
-        assertEquals(91, longestPalindrome("e 0zwm3 adng8i?v898?zl5hci00hc842u0qpuq5s 8.zq42b1v0v1b24qz.8 s5qupq0u248ch00ich5lz?898v?i8gnda 32"));
-        assertEquals(33, longestPalindrome("pa8024r8jn49nv2?563i365?2vn94nj8r420qc"));
+        assertEquals(63,
+                longestPalindrome("!loj!bu 7u y8z6rh.pqxwc3aka2r?t. .t?r2aka3cwxqp.hr6z8y u7 ub!jolnwc?jui tpt"));
+        assertEquals(34,
+                longestPalindrome("ieic!e9ovmgf ld ee dl fgmvo9e!ciei6hx4vqozz!h zo0u7"));
+        assertEquals(54,
+                longestPalindrome("9eu!mw fx5jzn7v9yr  e469fx!?11?!xf964e  ry9v7nzj5xf wm!u4x"));
+        assertEquals(68,
+                longestPalindrome("?ihuw7bl?fn2t4 cvr5 oo9rv  zl.vct r sv6yuyjuk5m5  " +
+                        "5m5kujyuy6vs r tcv.lz  vr9oo 5rvci?b cs rcet!"));
+        assertEquals(46,
+                longestPalindrome("pe1ftuq?xt ur? m1hml0eppe0lmh1m ?ru tx?qutf1ep"));
+        assertEquals(51,
+                longestPalindrome("wyz0z jj8mswgu e0q8 f29o p!2glzs gc.q6f2nkukn2f6q.cg szlg2!p o92f 8q!tp"));
+        assertEquals(91,
+                longestPalindrome("e 0zwm3 adng8i?v898?zl5hci00hc842u0qpuq5s 8.zq42b1v0v1b24qz.8 " +
+                        "s5qupq0u248ch00ich5lz?898v?i8gnda 32"));
+        assertEquals(33,
+                longestPalindrome("pa8024r8jn49nv2?563i365?2vn94nj8r420qc"));
     }
 
     public static int longestPalindrome(final String s) {
