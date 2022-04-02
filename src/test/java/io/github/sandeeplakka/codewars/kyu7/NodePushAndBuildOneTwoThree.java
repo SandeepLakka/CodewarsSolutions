@@ -65,12 +65,12 @@ public class NodePushAndBuildOneTwoThree {
     }
 
     private Node buildOneTwoThreeV1() {
-        Node head = null;
-        head = push(head, 3);
-        head = push(head, 2);
-        head = push(head, 1);
-        return head;
-        //return new Node(1, new Node(2, new Node(3)));
+//        Node head = null;
+//        head = push(head, 3);
+//        head = push(head, 2);
+//        head = push(head, 1);
+//        return head;
+        return new Node(1, new Node(2, new Node(3)));
     }
 
     public static Node push(final Node head, final int data) {
