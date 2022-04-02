@@ -38,12 +38,39 @@ public class NodePushAndBuildOneTwoThree {
     }
 
     @Test
+    public void testPushV1() {
+        assertEquals(1, pushV1(null, 1).data, "Should be able to create a new linked list with push().");
+        assertNull(push(null, 1).next, "Should be able to create a new linked list with push().");
+        assertEquals(2, pushV1(new Node(1), 2).data, "Should be able to prepend a node to an existing node.");
+        assertEquals(1, pushV1(new Node(1), 2).next.data, "Should be able to prepend a node to an existing node.");
+    }
+
+
+    @Test
     public void testBuild123() {
         // tests for building a linked list.
         assertEquals(1, buildOneTwoThree().data, "Value at index 0 should be 1.");
         assertEquals(2, buildOneTwoThree().next.data, "Value at index 1 should be 2.");
         assertEquals(3, buildOneTwoThree().next.next.data, "Value at index 2 should be 3.");
         assertNull(buildOneTwoThree().next.next.next, "Value at index 3 should be null.");
+    }
+
+    @Test
+    public void testBuild123V1() {
+        // tests for building a linked list.
+        assertEquals(1, buildOneTwoThreeV1().data, "Value at index 0 should be 1.");
+        assertEquals(2, buildOneTwoThreeV1().next.data, "Value at index 1 should be 2.");
+        assertEquals(3, buildOneTwoThreeV1().next.next.data, "Value at index 2 should be 3.");
+        assertNull(buildOneTwoThreeV1().next.next.next, "Value at index 3 should be null.");
+    }
+
+    private Node buildOneTwoThreeV1() {
+        Node head = null;
+        head = push(head, 3);
+        head = push(head, 2);
+        head = push(head, 1);
+        return head;
+        //return new Node(1, new Node(2, new Node(3)));
     }
 
     public static Node push(final Node head, final int data) {
@@ -54,6 +81,10 @@ public class NodePushAndBuildOneTwoThree {
                     return curNode;
                 })
                 .orElse(new Node(data));
+    }
+
+    public static Node pushV1(final Node head, final int data) {
+        return new Node(data, head);
     }
 
     public static Node buildOneTwoThree() {
@@ -69,7 +100,12 @@ public class NodePushAndBuildOneTwoThree {
         Node next;
 
         public Node(int data) {
+            this(data, null);
+        }
+
+        public Node(int data, Node next) {
             this.data = data;
+            this.next = next;
         }
     }
 }
