@@ -29,6 +29,13 @@ Categories : Fundamentals, Linked Lists, Lists, Data Structures
  */
 public class GetNthNode {
     @Test
+    public void test0() {
+        Node n = new Node();
+        n.data = 1337;
+        assertEquals(getNth(n, 0), 1337);
+    }
+
+    @Test
     public void test2() {
         Node n = new Node();
         n.data = 1337;
@@ -48,6 +55,25 @@ public class GetNthNode {
         assertThrows(IllegalArgumentException.class, () -> getNth(null, 0));
     }
 
+
+    @Test
+    public void testOther() {
+        Node n = new Node();
+        n.data = 0;
+        n.next = new Node();
+        n.next.data = 1;
+        n.next.next = new Node();
+        n.next.next.data = -1;
+
+        assertThrows(IllegalArgumentException.class, () -> getNth(n, -1));
+        assertThrows(IllegalArgumentException.class, () -> getNth(n, -1337));
+        assertEquals(0, getNth(n, 0));
+        assertEquals(1, getNth(n, 1));
+        assertEquals(-1, getNth(n, 2));
+        assertThrows(IllegalArgumentException.class, () -> getNth(n, 3));
+        assertThrows(IllegalArgumentException.class, () -> getNth(n, 1337));
+
+    }
 
     @Test
     public void testWrongIdx() {
