@@ -59,31 +59,39 @@ Basic Language Features
  */
 class ListReducer {
 
+    private static Integer multiply(Integer a, Integer b) {
+        return a * b;
+    }
+
+    private static String concat(String a, String b) {
+        return a + b;
+    }
+
     @Test
     public void basicTests() {
-        assertEquals(0, (int) reduce(null, (a, b) -> a + b, 0));
+        assertEquals(0, (int) reduce(null, Integer::sum, 0));
         assertEquals(6, (int) reduce(
-                new Node<Integer>(1,
-                        new Node<Integer>(2,
-                                new Node<Integer>(3)
+                new Node<>(1,
+                        new Node<>(2,
+                                new Node<>(3)
                         )
-                ), (a, b) -> a + b, 0)
+                ), Integer::sum, 0)
         );
         assertEquals(24, (int) reduce(
-                new Node<Integer>(1,
-                        new Node<Integer>(2,
-                                new Node<Integer>(3,
-                                        new Node<Integer>(4)
+                new Node<>(1,
+                        new Node<>(2,
+                                new Node<>(3,
+                                        new Node<>(4)
                                 )
                         )
-                ), (a, b) -> a * b, 1)
+                ), ListReducer::multiply, 1)
         );
         assertEquals("abc", reduce(
-                new Node<String>("a",
-                        new Node<String>("b",
-                                new Node<String>("c")
+                new Node<>("a",
+                        new Node<>("b",
+                                new Node<>("c")
                         )
-                ), (a, b) -> a + b, "")
+                ), ListReducer::concat, "")
         );
     }
 
@@ -100,7 +108,7 @@ class ListReducer {
         public T data;
         public Node<T> next;
 
-        Node(T data, Node next) {
+        Node(T data, Node<T> next) {
             this.data = data;
             this.next = next;
         }
