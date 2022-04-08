@@ -21,16 +21,16 @@ public class HowManyPagesInABook {
 
     @Test
     public void testEdges() {
-        assertEquals(1, HowManyPagesInABook.amountOfPages(1));
-        assertEquals(1000, HowManyPagesInABook.amountOfPages(2893));
-        assertEquals(999, HowManyPagesInABook.amountOfPages(2889));
+        assertEquals(1, amountOfPages(1));
+        assertEquals(1000, amountOfPages(2893));
+        assertEquals(999, amountOfPages(2889));
     }
 
     @RepeatedTest(200)
     public void testRandom() {
         int expectedPages = getRandomInt(12, pow(10, 5));
         int totalDigits = A058183(expectedPages);
-        int actualPages = HowManyPagesInABook.amountOfPages(totalDigits);
+        int actualPages = amountOfPages(totalDigits);
         assertEquals(expectedPages, actualPages);
     }
 
