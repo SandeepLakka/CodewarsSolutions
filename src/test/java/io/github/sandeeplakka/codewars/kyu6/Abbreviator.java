@@ -48,7 +48,29 @@ public class Abbreviator {
     }
 
     @Test
-    public void te() {
+    public void testInternationalization() {
+        assertEquals("i18n", abbreviator.abbreviate("internationalization"));
+        assertEquals("i18n i19X", abbreviator.abbreviate("internationalization internationalizationX"));
+    }
+
+    @Test
+    public void testAccessibility() {
+        assertEquals("a11y", abbreviator.abbreviate("accessibility"));
+    }
+
+    @Test
+    public void testAccessibilityCaps() {
+        assertEquals("A11y", abbreviator.abbreviate("Accessibility"));
+    }
+
+    @Test
+    public void testLongSentence() {
+        assertEquals("You n2d, n2d not w2t, to c6e t2s c2e-w2s m5n",
+                abbreviator.abbreviate("You need, need not want, to complete this code-wars mission"));
+    }
+
+    @Test
+    public void lastTests() {
         assertEquals("e6t-r3s are r4y fun!",
                 abbreviator.abbreviate("elephant-rides are really fun!"));
         assertEquals("m8c'cat. cat-a", abbreviator.abbreviate("monolithic'cat. cat-a"));
