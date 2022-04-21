@@ -25,6 +25,7 @@ public class Palindromes {
 
     @Test
     public void basicTests() {
+        assertEquals(0, longestPalindrome(""));
         assertEquals(1, longestPalindrome("a"));
         assertEquals(2, longestPalindrome("aa"));
         assertEquals(2, longestPalindrome("baa"));
@@ -36,6 +37,7 @@ public class Palindromes {
 
     @Test
     public void basicTests_for_V1_impl() {
+        assertEquals(0, longestPalindromeV1(""));
         assertEquals(1, longestPalindromeV1("a"));
         assertEquals(2, longestPalindromeV1("aa"));
         assertEquals(2, longestPalindromeV1("baa"));
@@ -91,7 +93,7 @@ public class Palindromes {
 
     //naive/bruteforce approach
     public static int longestPalindrome(final String s) {
-        int highest = -1;
+        int highest = 0;
         //if(s.length() <= 1 ) return 1;
         for (int i = 0; i < s.length(); i++) {
             for (int j = i + 1; j <= s.length(); j++) {
@@ -109,9 +111,10 @@ public class Palindromes {
 
     public static int longestPalindromeV1(final String s) {
         boolean[][] memo = new boolean[s.length()][s.length()];
-        int max = 1;
+        int max = 0;
         for (int i = 0; i < s.length(); i++) {
             memo[i][i] = true;
+            max = 1;
         }
         for (int i = 0; i < s.length() - 1; i++) {
             if (s.charAt(i) == s.charAt(i + 1)) {
