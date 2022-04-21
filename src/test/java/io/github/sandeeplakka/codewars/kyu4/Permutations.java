@@ -47,6 +47,11 @@ class Permutations {
                 singlePermutations("aabb").stream().sorted().collect(Collectors.toList()));
     }
 
+    @Test
+    public void example4() {
+        assertEquals(Collections.singletonList("aa"), singlePermutations("aa").stream().sorted().collect(Collectors.toList()));
+    }
+
 
     private Set<String> singlePermutations(String a) {
         Set<String> result = new HashSet<>();
