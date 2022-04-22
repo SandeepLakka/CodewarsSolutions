@@ -47,6 +47,32 @@ class Permutations {
                 singlePermutations("aabb").stream().sorted().collect(Collectors.toList()));
     }
 
+
+    @Test
+    public void uniqueLetters() {
+        List<String> abcd = Arrays.asList("abcd", "abdc", "acbd", "acdb", "adbc", "adcb", "bacd", "badc", "bcad", "bcda", "bdac", "bdca",
+                "cabd", "cadb", "cbad", "cbda", "cdab", "cdba", "dabc", "dacb", "dbac", "dbca", "dcab", "dcba");
+
+        assertEquals(abcd, singlePermutations("abcd")
+                .stream().sorted().collect(Collectors.toList()));
+        assertEquals(abcd, singlePermutations("bcad")
+                .stream().sorted().collect(Collectors.toList()));
+        assertEquals(abcd, singlePermutations("dcba")
+                .stream().sorted().collect(Collectors.toList()));
+    }
+
+
+    @Test
+    public void duplicateLetters() {
+
+        assertEquals(Collections.singletonList("aa"),
+                singlePermutations("aa").stream().sorted().collect(Collectors.toList()));
+        assertEquals(Arrays.asList("aaaab", "aaaba", "aabaa", "abaaa", "baaaa"),
+                singlePermutations("aaaab").stream().sorted().collect(Collectors.toList()));
+        assertEquals(Arrays.asList("aaaaab", "aaaaba", "aaabaa", "aabaaa", "abaaaa", "baaaaa"),
+                singlePermutations("aaaaab").stream().sorted().collect(Collectors.toList()));
+    }
+
     @Test
     public void example4() {
         assertEquals(Collections.singletonList("aa"), singlePermutations("aa").stream().sorted().collect(Collectors.toList()));
