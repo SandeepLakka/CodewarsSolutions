@@ -36,6 +36,12 @@ public class SumOfMultiples {
         assertEquals(30, sumMul(5, 20), "n = 5, m = 20");
         assertEquals(1860, sumMul(4, 123), "n = 4, m = 123");
         assertEquals(86469, sumMul(123, 4567), "n = 123, m = 4567");
+
+        assertEquals(20, sumMulV1(2, 9), "n = 2, m = 9");
+        assertEquals(30, sumMulV1(5, 20), "n = 5, m = 20");
+        assertEquals(1860, sumMulV1(4, 123), "n = 4, m = 123");
+        assertEquals(86469, sumMulV1(123, 4567), "n = 123, m = 4567");
+
     }
 
     @Test
@@ -43,6 +49,11 @@ public class SumOfMultiples {
         assertThrows(IllegalArgumentException.class, () -> sumMul(0, 0), "n = 0, m = 0");
         assertThrows(IllegalArgumentException.class, () -> sumMul(4, -7), "n = 4, m = -7");
         assertThrows(IllegalArgumentException.class, () -> sumMul(-3, 10), "n = -3, m = 10");
+
+        assertThrows(IllegalArgumentException.class, () -> sumMulV1(0, 0), "n = 0, m = 0");
+        assertThrows(IllegalArgumentException.class, () -> sumMulV1(4, -7), "n = 4, m = -7");
+        assertThrows(IllegalArgumentException.class, () -> sumMulV1(-3, 10), "n = -3, m = 10");
+
     }
 
     @RepeatedTest(10)
@@ -52,12 +63,14 @@ public class SumOfMultiples {
             int n = rand.nextInt(-100, 1_000);
             int m = rand.nextInt(-100, 10_000);
 
-            if (n < 1 || m < 1)
+            if (n < 1 || m < 1) {
                 assertThrows(IllegalArgumentException.class, () -> sumMul(n, m), "n = " + n + ", m = " + m);
-            else {
+                assertThrows(IllegalArgumentException.class, () -> sumMulV1(n, m), "n = " + n + ", m = " + m);
+            } else {
                 int k = (m - 1) / n;
                 int expected = k * (k + 1) / 2 * n;
                 assertEquals(expected, sumMul(n, m), "n = " + n + ", m = " + m);
+                assertEquals(expected, sumMulV1(n, m), "n = " + n + ", m = " + m);
             }
         }
 
@@ -66,5 +79,11 @@ public class SumOfMultiples {
     public static long sumMul(int n, int m) {
         if (n < 1 || m < 1) throw new IllegalArgumentException("Invalid input");
         return IntStream.range(0, m).filter(value -> value % n == 0).sum();
+    }
+
+    public static long sumMulV1(int n, int m) {
+        if (n < 1 || m < 1) throw new IllegalArgumentException("Invalid inputs");
+        long x = (m - 1) / n;
+        return (n * x * (x + 1) / 2);
     }
 }
