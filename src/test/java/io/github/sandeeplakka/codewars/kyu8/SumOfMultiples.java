@@ -64,7 +64,7 @@ public class SumOfMultiples {
     }
 
     public static long sumMul(int n, int m) {
-        if (n < 0 || m < 0 || n == 0 || m == 0) throw new IllegalArgumentException("Invalid input");
+        if (n < 1 || m < 1) throw new IllegalArgumentException("Invalid input");
         return IntStream.range(0, m).filter(value -> value % n == 0).sum();
     }
 }
