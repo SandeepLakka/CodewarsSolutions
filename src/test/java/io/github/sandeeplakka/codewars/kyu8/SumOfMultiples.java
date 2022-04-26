@@ -1,7 +1,9 @@
 package io.github.sandeeplakka.codewars.kyu8;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,8 +45,26 @@ public class SumOfMultiples {
         assertThrows(IllegalArgumentException.class, () -> sumMul(-3, 10), "n = -3, m = 10");
     }
 
+    @RepeatedTest(10)
+    void randomTests() {
+        ThreadLocalRandom rand = ThreadLocalRandom.current();
+        for (int i = 0; i < 100; i++) {
+            int n = rand.nextInt(-100, 1_000);
+            int m = rand.nextInt(-100, 10_000);
+
+            if (n < 1 || m < 1)
+                assertThrows(IllegalArgumentException.class, () -> sumMul(n, m), "n = " + n + ", m = " + m);
+            else {
+                int k = (m - 1) / n;
+                int expected = k * (k + 1) / 2 * n;
+                assertEquals(expected, sumMul(n, m), "n = " + n + ", m = " + m);
+            }
+        }
+
+    }
+
     public static long sumMul(int n, int m) {
         if (n < 0 || m < 0 || n == 0 || m == 0) throw new IllegalArgumentException("Invalid input");
-        return IntStream.range(0, m).filter(value -> value % n == 0).peek(System.out::println).sum();
+        return IntStream.range(0, m).filter(value -> value % n == 0).sum();
     }
 }
