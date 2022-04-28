@@ -1,5 +1,9 @@
 package io.github.sandeeplakka.codewars.kyu7;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /*
 Sorted? yes? no? how?
 
@@ -15,6 +19,24 @@ Categories : Fundamentals, Arrays, Sorting, Algorithms
 
  */
 class SortedOrNot {
+
+    @Test
+    public void testForAscending() {
+        assertEquals("yes, ascending", isSortedAndHow(new int[]{1, 3, 5, 6, 7}));
+        assertEquals("yes, ascending", isSortedAndHow(new int[]{1, 10, 100}));
+    }
+
+    @Test
+    public void testForDescending() {
+        assertEquals("yes, descending", isSortedAndHow(new int[]{100, 30, 15, 6}));
+        assertEquals("yes, descending", isSortedAndHow(new int[]{100, 10, 1}));
+    }
+
+    @Test
+    public void testForEquals() {
+        assertEquals("no", isSortedAndHow(new int[]{1, 3, 5, 6, 2}));
+        assertEquals("no", isSortedAndHow(new int[]{1, 10, 5}));
+    }
 
 
     //FIXME : YTD
