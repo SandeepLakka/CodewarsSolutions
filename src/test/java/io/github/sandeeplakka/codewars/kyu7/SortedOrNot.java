@@ -47,12 +47,12 @@ class SortedOrNot {
         if (array == null) return "no";
 
         for (int i = 1; i < array.length; i++) {
-            if (array[i] > 1) {
-            }
+            //TODO Logic
         }
-        boolean isSorted;
+        boolean isSorted = false;
+        boolean isAscending = false;
 
-        return "";
+        return (isSorted ? (isAscending ? ASCENDING : DESCENDING) : NO);
     }
 
 }
