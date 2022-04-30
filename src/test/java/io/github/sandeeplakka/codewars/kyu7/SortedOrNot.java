@@ -39,18 +39,30 @@ class SortedOrNot {
     }
 
 
-    //FIXME : YTD
     public static String isSortedAndHow(int[] array) {
         final String NO = "no";
         final String ASCENDING = "yes, ascending";
         final String DESCENDING = "yes, descending";
         if (array == null) return "no";
 
+        boolean isSorted = true;
+        boolean isAscending = array[0] <= array[array.length - 1];
+
         for (int i = 1; i < array.length; i++) {
-            //TODO Logic
+            if (isAscending) {
+                if (array[i - 1] > array[i]) {
+                    isSorted = false;
+                    break;
+                }
+            } else {
+                if (array[i - 1] < array[i]) {
+                    isSorted = false;
+                    break;
+                }
+            }
         }
-        boolean isSorted = false;
-        boolean isAscending = false;
+
+        isAscending = isAscending && isSorted;
 
         return (isSorted ? (isAscending ? ASCENDING : DESCENDING) : NO);
     }
