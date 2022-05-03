@@ -51,7 +51,7 @@ public class ListLength {
         assertEquals(4, lengthRecur(listFromArray(1, 2, 3, 4)));
     }
 
-    static <T> int lengthIterative(Node head) {
+    static <T> int lengthIterative(Node<T> head) {
         if (head == null) return 0;
         int length = 1;
         while (head.next != null) {
@@ -61,7 +61,7 @@ public class ListLength {
         return length;
     }
 
-    static <T> int lengthRecur(Node head) {
+    static <T> int lengthRecur(Node<T> head) {
         if (head == null) return 0;
         return 1 + lengthRecur(head.next);
     }
@@ -71,8 +71,7 @@ public class ListLength {
 //helper and support code
 class Helpers {
     public static <T> Node<T> listFromArray(T... arr) {
-        Node<T> head = new Node<>(arr[0]);
-        Node<T> pointer = head;
+        Node<T> pointer = new Node<>(arr[0]);
         for (int i = 1; i < arr.length; i++) {
             T val = arr[i];
             Node<T> curNode = new Node<>(val);
@@ -88,9 +87,9 @@ class Helpers {
 
 class Node<T> {
     public T data;
-    public Node next;
+    public Node<T> next;
 
-    Node(T data, Node next) {
+    Node(T data, Node<T> next) {
         this.data = data;
         this.next = next;
     }
