@@ -57,17 +57,17 @@ public class BinomialExpansion {
     @Test
     public void tests_getNcX() {
         assertEquals(BigInteger.ONE, getNcX(100, 0));
-        assertEquals(BigInteger.valueOf((long) 2), getNcX(2, 1));
-        assertEquals(BigInteger.valueOf((long) 3), getNcX(3, 2));
-        assertEquals(BigInteger.valueOf((long) 6), getNcX(4, 2));
+        assertEquals(BigInteger.valueOf(2), getNcX(2, 1));
+        assertEquals(BigInteger.valueOf(3), getNcX(3, 2));
+        assertEquals(BigInteger.valueOf(6), getNcX(4, 2));
     }
 
     @Test
     public void tests_getCoefficient() {
         assertEquals(BigInteger.ONE, getCoefficient(1, 2));
-        assertEquals(BigInteger.valueOf((long) -8), getCoefficient(-2, 3));
-        assertEquals(BigInteger.valueOf((long) 81), getCoefficient(-3, 4));
-        assertEquals(BigInteger.valueOf((long) 16), getCoefficient(4, 2));
+        assertEquals(BigInteger.valueOf(-8), getCoefficient(-2, 3));
+        assertEquals(BigInteger.valueOf(81), getCoefficient(-3, 4));
+        assertEquals(BigInteger.valueOf(16), getCoefficient(4, 2));
     }
 
     @Test
@@ -94,7 +94,7 @@ public class BinomialExpansion {
         Pattern pattern = Pattern.compile("\\(([-]?\\d*)([a-zA-Z]?)([+-]?\\d*)([a-zA-Z]?)\\)\\^(\\d*)");
         Matcher matcher = pattern.matcher(expr);
         if (matcher.find()) {
-            System.out.println("------------" + expr + "-------------------------------");
+            //System.out.println("------------" + expr + "-------------------------------");
             leftTerm = matcher.group(2);
             leftCoefficient = getVal(matcher.group(1));
             rightCoefficient = getVal(matcher.group(3));
