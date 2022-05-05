@@ -85,11 +85,11 @@ public class BinomialExpansion {
 
     public String expand(String expr) {
 
-        int leftCoefficient = -1;
-        String leftTerm = "";
-        int rightCoefficient = -1;
-        String rightTerm = "";
-        int power = -1;
+        int leftCoefficient;
+        String leftTerm;
+        int rightCoefficient;
+        String rightTerm;
+        int power;
         StringBuilder builder = new StringBuilder();
         Pattern pattern = Pattern.compile("\\(([-]?\\d*)([a-zA-Z]?)([+-]?\\d*)([a-zA-Z]?)\\)\\^(\\d*)");
         Matcher matcher = pattern.matcher(expr);
@@ -106,19 +106,17 @@ public class BinomialExpansion {
             }
             if (leftTerm.isEmpty() && leftCoefficient == 0) {
                 BigInteger prod = BigInteger.valueOf(rightCoefficient).pow(power);
-                return new StringBuilder()
-                        .append(prod.compareTo(BigInteger.ONE) > 0 ? prod : "")
-                        .append(rightTerm)
-                        .append("^")
-                        .append(power).toString();
+                return (prod.compareTo(BigInteger.ONE) > 0 ? prod : "") +
+                        rightTerm +
+                        "^" +
+                        power;
             }
             if (rightTerm.isEmpty() && rightCoefficient == 0) {
                 BigInteger prod = BigInteger.valueOf(leftCoefficient).pow(power);
-                return new StringBuilder()
-                        .append(prod.compareTo(BigInteger.ONE) > 0 ? prod : "")
-                        .append(leftTerm)
-                        .append("^")
-                        .append(power).toString();
+                return (prod.compareTo(BigInteger.ONE) > 0 ? prod : "") +
+                        leftTerm +
+                        "^" +
+                        power;
             }
 
             int number = 0;
