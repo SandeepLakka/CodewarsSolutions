@@ -78,9 +78,45 @@ class ListMap {
                 new Node<>("aaax", new Node<>("bx", new Node<>("abcx"))));
     }
 
+    @Test
+    public void basicTests_for_recursiveSolution() {
+        testMapRecur(null, __ -> false, null);
+
+        testMapRecur(new Node<>(1, new Node<>(2, new Node<>(3))),
+                x -> x,
+                new Node<>(1, new Node<>(2, new Node<>(3))));
+
+        Function<Integer, Integer> f = x -> x * 2;
+        testMapRecur(new Node<>(1, new Node<>(2, new Node<>(3))),
+                f,
+                new Node<>(2, new Node<>(4, new Node<>(6))));
+    }
+
+    @Test
+    public void moreTests_for_recursiveSolution() {
+        Function<Integer, Integer> f1 = x -> x + 3;
+        testMapRecur(new Node<>(1, new Node<>(2, new Node<>(3))),
+                f1,
+                new Node<>(4, new Node<>(5, new Node<>(6))));
+
+        Function<Integer, Boolean> f2 = x -> x > 1;
+        testMapRecur(new Node<>(1, new Node<>(2, new Node<>(3))),
+                f2,
+                new Node<>(false, new Node<>(true, new Node<>(true))));
+
+        Function<String, String> f3 = x -> x + "x";
+        testMapRecur(new Node<>("aaa", new Node<>("b", new Node<>("abc"))),
+                f3,
+                new Node<>("aaax", new Node<>("bx", new Node<>("abcx"))));
+    }
+
 
     private static <T, R> void testMap(Node<T> head, Function<T, R> f, Node<R> expected) {
         assertArrayEquals(listToArray(expected), listToArray(map(head, f)));
+    }
+
+    private static <T, R> void testMapRecur(Node<T> head, Function<T, R> f, Node<R> expected) {
+        assertArrayEquals(listToArray(expected), listToArray(mapRecur(head, f)));
     }
 
     private static <T> Object[] listToArray(Node<T> head) {
@@ -105,5 +141,10 @@ class ListMap {
             head = head.next;
         }
         return returnHead;
+    }
+
+    //Recursive approach
+    static <T, R> Node<R> mapRecur(Node<T> head, Function<T, R> f) {
+        return (head == null) ? null : new Node<>(f.apply(head.data), mapRecur(head.next, f));
     }
 }
