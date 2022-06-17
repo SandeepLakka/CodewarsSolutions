@@ -2,6 +2,7 @@ package io.github.sandeeplakka.codewars.kyu8;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
@@ -34,6 +35,19 @@ public class GrassHopperCheckForFactor {
         assertTrue(checkForFactor(24612, 3));
     }
 
+
+    @Test
+    public void randomTests() {
+        for (int i = 0; i < 100; i++) {
+            int b = (int) (Math.random() * 10000 + 1);
+            int f = (int) (Math.random() * 20 + 1) / 1_00_000 * b + 1;
+            if (Math.random() >= 0.5) {
+                assertTrue(checkForFactor(b, b * f));
+            } else {
+                assertFalse(checkForFactor(b + 1, b * f));
+            }
+        }
+    }
 
     public static boolean checkForFactor(int base, int factor) {
         return base % factor == 0;
