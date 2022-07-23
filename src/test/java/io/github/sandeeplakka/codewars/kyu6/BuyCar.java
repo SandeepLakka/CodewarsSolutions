@@ -23,13 +23,6 @@ Can you help him?
 How many months will it take him to save up enough money to buy the car he wants,
 and how much money will he have left over?
 
-Parameters and return of function:
-
-parameter (positive int or float, guaranteed) start_price_old (Old car price)
-parameter (positive int or float, guaranteed) start_price_new (New car price)
-parameter (positive int or float, guaranteed) saving_per_month
-parameter (positive float or int, guaranteed) percent_loss_by_month
-
 nbMonths(2000, 8000, 1000, 1.5) should return [6, 766] or (6, 766)
 
 Detail of the above example:
