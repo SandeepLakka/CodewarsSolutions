@@ -19,31 +19,32 @@ Categories : Fundamentals
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class God {
 
     @Test
     public void makingAdam() {
         Human[] paradise = God.create();
-        assertEquals(true, paradise[0] instanceof Man, "Adam is a man");
+        assertTrue(paradise[0] instanceof Man, "Adam is a man");
     }
 
     @Test
     public void makingEva() {
         Human[] paradise = God.create();
-        assertEquals(true, paradise[1] instanceof Woman, "Eva is a woman");
+        assertTrue(paradise[1] instanceof Woman, "Eva is a woman");
     }
 
     @Test
     public void adamAreHuman() {
         Human[] paradise = God.create();
-        assertEquals(true, paradise[0] instanceof Human, "Adam is of human race");
+        assertTrue(paradise[0] != null && paradise[0] instanceof Human, "Adam is of human race");
     }
 
     @Test
     public void evaAreHuman() {
         Human[] paradise = God.create();
-        assertEquals(true, paradise[1] instanceof Human, "Eva is of human race");
+        assertTrue(paradise[1] != null && paradise[1] instanceof Human, "Eva is of human race");
     }
 
     @Test
