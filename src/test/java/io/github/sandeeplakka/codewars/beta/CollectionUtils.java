@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -52,11 +50,21 @@ public class CollectionUtils {
 	//Currently, it only works for single level of nesting
 	public static List<Object> flattenList(List<Object> list) {
 		// Your code goes here
-		if (list == null) return new ArrayList<Object>() {{
-			new Object();
-		}};
-		return list.stream().flatMap(o -> (o instanceof List) ? ((List<Object>) o).stream() : Stream.of(o)).collect(Collectors.toList());
-		//return null;
+		List<Object> result = new ArrayList<>();
+		if (list == null) return result;
+		flatten(list, result);
+		//list.stream().flatMap(o -> (o instanceof List) ? ((List<Object>) o).stream() : Stream.of(o)).collect(Collectors.toList());
+		return result;
+	}
+
+	private static void flatten(Object item, List<Object> result) {
+		if (item instanceof List) {
+			for (Object val : (List<Object>) item) {
+				flatten(val, result);
+			}
+		} else {
+			result.add(item);
+		}
 	}
 
 }
