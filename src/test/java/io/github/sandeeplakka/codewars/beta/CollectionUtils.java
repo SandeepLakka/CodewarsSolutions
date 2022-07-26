@@ -46,8 +46,7 @@ public class CollectionUtils {
 
 	}
 
-	//TODO: update the impl to make it work for multiple levels of nesting
-	//Currently, it only works for single level of nesting
+	//TODO: update the impl to make it work for multiple levels of nesting in correct order
 	public static List<Object> flattenList(List<Object> list) {
 		// Your code goes here
 		List<Object> result = new ArrayList<>();
