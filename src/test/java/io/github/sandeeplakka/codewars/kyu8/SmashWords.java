@@ -19,23 +19,26 @@ Categories : Strings, Arrays, Fundamentals
 public class SmashWords {
 
   @Test
-	public void validate() {
-		assertEquals("Bilal Djaghout", smash(new String[] { "Bilal", "Djaghout" }));
-	}
-	
-	@Test
-	public void validateEmpty() {
-		assertEquals("", smash(new String[] {}));
-	}
+  public void validate() {
+    assertEquals("Bilal Djaghout", SmashWords.smash(new String[] { "Bilal", "Djaghout" }));
+    assertEquals("hello world", SmashWords.smash(new String[] {"hello", "world"}));
+    assertEquals("hello amazing world", SmashWords.smash(new String[] {"hello", "amazing", "world"}));
+  }
+  
+  @Test
+  public void validateEmpty() {
+    assertEquals("", SmashWords.smash(new String[] {}));
+  }
 
-	
-	@Test
-	public void validateOneWord() {
-		assertEquals("Bilal", smash(new String[] {"Bilal"}));
-	}
+  
+  @Test
+  public void validateOneWord() {
+    assertEquals("Bilal", SmashWords.smash(new String[] {"Bilal"}));
+    assertEquals("Test", SmashWords.smash(new String[] {"Test"}));
+  }
   
   
-	public static String smash(String... words) {
+  public static String smash(String... words) {
     return String.join(" ", words);
   }
 }
