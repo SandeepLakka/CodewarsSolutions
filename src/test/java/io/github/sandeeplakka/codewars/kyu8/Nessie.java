@@ -23,7 +23,7 @@ public class Nessie {
 
     public static boolean isLockNessMonster(String s) {
         //FIND THE LOCH NESS MONSTER. SAVE YOUR TREE FIDDY
-        String regex = ".*(tree fiddy|three fifty|3.50).*";
+        String regex = ".*(tree fiddy|three fifty|3\\.50).*";
         return s.matches(regex);
         //return false;
     }
