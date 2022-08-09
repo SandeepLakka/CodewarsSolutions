@@ -28,6 +28,18 @@ public class Repeater {
         assertEquals("Wub Wub Wub Wub Wub Wub ", repeat("Wub ", 6));
     }
 
+    @Test
+    public void moreTests() {
+        assertEquals("lalalalalalalalalalalala",
+                repeat("la", 12));
+        assertEquals("dance\ndance\ndance\n",
+                repeat("dance\n", 3));
+        assertEquals("A stopped clock is right twice a day. A stopped clock is right twice a day. ",
+                repeat("A stopped clock is right twice a day. ", 2));
+        assertEquals("nineninenineninenineninenineninenine",
+                repeat("nine", 9));
+    }
+
     public static String repeat(String string, long n) {
         return LongStream.range(0, n)
                 .mapToObj(value -> string)
