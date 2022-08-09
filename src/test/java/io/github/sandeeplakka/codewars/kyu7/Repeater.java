@@ -2,6 +2,7 @@ package io.github.sandeeplakka.codewars.kyu7;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +44,9 @@ public class Repeater {
     public static String repeat(String string, long n) {
         return LongStream.range(0, n)
                 .mapToObj(value -> string)
-                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-                .toString();
+                .collect(Collectors.joining());
+        //either above terminal operation or the following process
+        //.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+        //.toString();
     }
 }
