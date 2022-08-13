@@ -2,11 +2,7 @@ package io.github.sandeeplakka.codewars.kyu7;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,16 +12,16 @@ Rock Paper Scissors Lizard Spock
 In this kata, your task is to implement an extended version of the famous rock-paper-scissors game.
 The rules are as follows:
 
-    Scissors cuts Paper
-    Paper covers Rock
-    Rock crushes Lizard
-    Lizard poisons Spock
-    Spock smashes Scissors
-    Scissors decapitates Lizard
-    Lizard eats Paper
-    Paper disproves Spock
-    Spock vaporizes Rock
-    Rock crushes Scissors
+    Scissors cut Paper.
+    Paper covers Rock.
+    Rock crushes Lizard.
+    Lizard poisons Spock.
+    Spock smashes Scissors.
+    Scissors decapitate Lizard.
+    Lizard eats Paper.
+    Paper disproves Spock.
+    Spock vaporizes Rock.
+    Rock crushes Scissors.
 
 Task:
 Given two values from the above game,
@@ -35,7 +31,6 @@ Inputs: Values will be given as one of "rock", "paper", "scissors", "lizard", "s
 
 
 Categories : Fundamentals, Logic
-
  */
 public class RPSLS {
     @Test
@@ -77,11 +72,11 @@ public class RPSLS {
         Map<String, Set<String>> rules = new HashMap<>();
 
 
-        rules.put(ROCK, Arrays.asList(SCISSORS, LIZARD).stream().collect(Collectors.toSet()));
-        rules.put(PAPER, Arrays.asList(ROCK, SPOCK).stream().collect(Collectors.toSet()));
-        rules.put(SCISSORS, Arrays.asList(PAPER, LIZARD).stream().collect(Collectors.toSet()));
-        rules.put(LIZARD, Arrays.asList(SPOCK, PAPER).stream().collect(Collectors.toSet()));
-        rules.put(SPOCK, Arrays.asList(SCISSORS, ROCK).stream().collect(Collectors.toSet()));
+        rules.put(ROCK, new HashSet<>(Arrays.asList(SCISSORS, LIZARD)));
+        rules.put(PAPER, new HashSet<>(Arrays.asList(ROCK, SPOCK)));
+        rules.put(SCISSORS, new HashSet<>(Arrays.asList(PAPER, LIZARD)));
+        rules.put(LIZARD, new HashSet<>(Arrays.asList(SPOCK, PAPER)));
+        rules.put(SPOCK, new HashSet<>(Arrays.asList(SCISSORS, ROCK)));
 
 
         return String.format(RESULT,
