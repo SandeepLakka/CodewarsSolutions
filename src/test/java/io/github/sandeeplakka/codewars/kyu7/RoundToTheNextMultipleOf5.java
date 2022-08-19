@@ -51,9 +51,16 @@ public class RoundToTheNextMultipleOf5 {
                                 "Input: " + testCase[0]));
     }
 
-    //TODO correct the logic for -ve values
-    //introduced couple of TCs (-2 and -5) to test it. TDD
+
     public static int roundToNext5(int number) {
-        return number % 5 == 0 ? number : number - number % 5 + 5;
+        if (Math.abs(number) % 5 == 0) {
+            return number;
+        }
+
+        if (number > 0) {
+            return number - number % 5 + 5;
+        } else {
+            return number + (-number) % 5;
+        }
     }
 }
