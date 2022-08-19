@@ -33,6 +33,8 @@ Categories : Fundamentals
 public class RoundToTheNextMultipleOf5 {
     @Test
     public void basicTests() {
+        System.out.println();
+
         int[][] arr = {
                 {0, 0},
                 {1, 5},
@@ -49,14 +51,20 @@ public class RoundToTheNextMultipleOf5 {
         };
         Arrays.stream(arr)
                 .forEach(
-                        (testCase) -> assertEquals(
-                                testCase[1],
-                                roundToNext5(testCase[0]),
-                                "Input: " + testCase[0]));
+                        (testCase) -> {
+                            assertEquals(
+                                    testCase[1],
+                                    roundToNext5v1(testCase[0]),
+                                    "Input for v1 : " + testCase[0]);
+                            assertEquals(
+                                    testCase[1],
+                                    roundToNext5v2(testCase[0]),
+                                    "Input for v2 : " + testCase[1]);
+                        });
     }
 
 
-    public static int roundToNext5(int number) {
+    public static int roundToNext5v1(int number) {
         if (Math.abs(number) % 5 == 0) {
             return number;
         }
@@ -66,5 +74,12 @@ public class RoundToTheNextMultipleOf5 {
         } else {
             return number + (-number) % 5;
         }
+    }
+
+    public static int roundToNext5v2(int number) {
+        while (number % 5 != 0) {
+            number++;
+        }
+        return number;
     }
 }
