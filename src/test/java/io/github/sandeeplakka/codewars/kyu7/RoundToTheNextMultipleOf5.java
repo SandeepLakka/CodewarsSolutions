@@ -39,7 +39,9 @@ public class RoundToTheNextMultipleOf5 {
                 {3, 5},
                 {5, 5},
                 {7, 10},
-                {39, 40}
+                {39, 40},
+                {-2, 0},
+                {-5, -5}
         };
         Arrays.stream(arr)
                 .forEach(
@@ -49,6 +51,8 @@ public class RoundToTheNextMultipleOf5 {
                                 "Input: " + testCase[0]));
     }
 
+    //TODO correct the logic for -ve values
+    //introduced couple of TCs (-2 and -5) to test it. TDD
     public static int roundToNext5(int number) {
         return number % 5 == 0 ? number : number - number % 5 + 5;
     }
