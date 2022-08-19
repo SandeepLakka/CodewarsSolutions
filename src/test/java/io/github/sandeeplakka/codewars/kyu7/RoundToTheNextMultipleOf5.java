@@ -36,12 +36,16 @@ public class RoundToTheNextMultipleOf5 {
         int[][] arr = {
                 {0, 0},
                 {1, 5},
+                {-1, 0},
+                {-5, -5},
                 {3, 5},
                 {5, 5},
                 {7, 10},
+                {20, 20},
                 {39, 40},
-                {-2, 0},
-                {-5, -5}
+                {990, 990},
+                {121, 125},
+                {555, 555}
         };
         Arrays.stream(arr)
                 .forEach(
