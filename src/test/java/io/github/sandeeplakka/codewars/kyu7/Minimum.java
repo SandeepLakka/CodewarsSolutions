@@ -47,6 +47,9 @@ public class Minimum {
         assertEquals(148, minValue(new int[]{4, 8, 1, 4}));
         assertEquals(579, minValue(new int[]{5, 7, 9, 5, 7}));
         assertEquals(678, minValue(new int[]{6, 7, 8, 7, 6, 6}));
+        assertEquals(45679, minValue(new int[] {5, 6, 9, 9, 7, 6, 4}));
+		assertEquals(134679, minValue(new int[] {1, 9, 1, 3, 7, 4, 6, 6, 7}));
+		assertEquals(356789, minValue(new int[] {3, 6, 5, 5, 9, 8, 7, 6, 3, 5, 9}));
     }
 
     public static int minValue(int[] values) {
