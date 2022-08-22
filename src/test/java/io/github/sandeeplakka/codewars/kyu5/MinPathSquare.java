@@ -53,6 +53,7 @@ public class MinPathSquare {
         assertEquals(24, minPath(smallSquare, 4, 5));
     }
 
+    //TODO implement memoized and then dp version of this
     public static int minPath(int[][] grid, int x, int y) {
 
         return minPathRecur(grid, x, y, 0, 0, 0);
