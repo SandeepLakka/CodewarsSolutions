@@ -41,17 +41,15 @@ public class StringIncrementer {
     public static String incrementString(String str) {
         Pattern pattern = Pattern.compile("([^\\d]*)([\\d]*)");
         Matcher matcher = pattern.matcher(str);
-        String result = null;
         if (matcher.find()) {
-            result = matcher.group(1) + (matcher.group(2).isEmpty() ? 1 : stringify(matcher));
+            return matcher.group(1) + (matcher.group(2).isEmpty() ? 1 : stringify(matcher));
         }
-        return result;
+        return null;
     }
 
     private static String stringify(Matcher matcher) {
         int len = matcher.group(2).length();
         int nextVal = Integer.parseInt(matcher.group(2)) + 1;
-        String appender = String.format("%0" + len + "d", nextVal);
-        return appender;
+        return String.format("%0" + len + "d", nextVal);
     }
 }
