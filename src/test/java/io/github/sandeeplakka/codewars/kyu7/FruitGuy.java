@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /*
 Help the Fruit Guy
@@ -17,7 +16,7 @@ He wants to replace all the rotten pieces of fruit with fresh ones.
 For example, given ["apple","rottenBanana","apple"]
 the replaced array should be ["apple","banana","apple"].
 Your task is to implement a method that accepts an array of strings containing fruits
-should returns an array of strings where all the rotten fruits are replaced by good ones.
+should return an array of strings where all the rotten fruits are replaced by good ones.
 
 Notes
 
@@ -33,7 +32,7 @@ public class FruitGuy {
 
     @Test
     public void testEmptyFruit() {
-        assertTrue(removeRotten(new String[0]).length == 0);
+        assertEquals(0, removeRotten(new String[0]).length);
     }
 
     @Test
@@ -48,6 +47,27 @@ public class FruitGuy {
     public static String[] removeRotten(String[] fruitBasket) {
         if (fruitBasket == null) return new String[]{};
         return Arrays.stream(fruitBasket).map(FruitGuy::stockFreshItems).toArray(String[]::new);
+
+    }
+
+    @Test
+    public void testNullArray() {
+        assertNotNull(removeRotten(null));
+    }
+
+    @Test
+    public void testGoodRottenArray() {
+        String[] rotten = new String[]{"apple", "rottenBanana", "rottenApple", "pineapple", "kiwi"};
+        String[] expected = new String[]{"apple", "banana", "apple", "pineapple", "kiwi"};
+
+        String[] actual;
+        try {
+            actual = removeRotten(rotten);
+        } catch (Throwable e) {
+            // see https://github.com/Codewars/codewars.com/issues/21 -> Resolved (07/2018)
+            throw new AssertionError("exception during test: " + e, e);
+        }
+        assertArrayEquals(expected, actual);
 
     }
 
