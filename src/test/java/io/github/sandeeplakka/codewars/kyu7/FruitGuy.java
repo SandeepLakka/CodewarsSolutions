@@ -1,0 +1,67 @@
+package io.github.sandeeplakka.codewars.kyu7;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/*
+Help the Fruit Guy
+
+
+
+Our fruit guy has a bag of fruit (represented as an array of strings) where some fruits are rotten.
+He wants to replace all the rotten pieces of fruit with fresh ones.
+For example, given ["apple","rottenBanana","apple"]
+the replaced array should be ["apple","banana","apple"].
+Your task is to implement a method that accepts an array of strings containing fruits
+should returns an array of strings where all the rotten fruits are replaced by good ones.
+
+Notes
+
+    If the array is null/nil/None or empty you should return empty array ([]).
+    The rotten fruit name will be in this camelcase (rottenFruit).
+    The returned array should be in lowercase.
+
+
+Categories : Arrays, Strings, Fundamentals
+
+ */
+public class FruitGuy {
+
+    @Test
+    public void testEmptyFruit() {
+        assertTrue(removeRotten(new String[0]).length == 0);
+    }
+
+    @Test
+    public void testAllRottenArray() {
+        String[] rotten = new String[]{"rottenApple", "rottenBanana",
+                "rottenApple", "rottenPineapple", "rottenKiwi"};
+        String[] expected = new String[]{"apple", "banana",
+                "apple", "pineapple", "kiwi"};
+        assertArrayEquals(expected, removeRotten(rotten));
+    }
+
+    public static String[] removeRotten(String[] fruitBasket) {
+        if (fruitBasket == null) return new String[]{};
+        return Arrays.stream(fruitBasket).map(FruitGuy::stockFreshItems).toArray(String[]::new);
+
+    }
+
+    private static String stockFreshItems(String fruit) {
+        if (fruit.startsWith("rotten")) {
+            char[] replacedArr = fruit.replaceFirst("rotten", "").toCharArray();
+            if (Character.isUpperCase(replacedArr[0])) {
+                replacedArr[0] = Character.toLowerCase(replacedArr[0]);
+                return new String(replacedArr);
+            }
+            return new String(replacedArr);
+        } else {
+            return fruit;
+        }
+    }
+
+}
