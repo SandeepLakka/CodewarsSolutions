@@ -3,6 +3,7 @@ package io.github.sandeeplakka.codewars.kyu7;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,12 +45,6 @@ public class FruitGuy {
         assertArrayEquals(expected, removeRotten(rotten));
     }
 
-    public static String[] removeRotten(String[] fruitBasket) {
-        if (fruitBasket == null) return new String[]{};
-        return Arrays.stream(fruitBasket).map(FruitGuy::stockFreshItems).toArray(String[]::new);
-
-    }
-
     @Test
     public void testNullArray() {
         assertNotNull(removeRotten(null));
@@ -71,17 +66,14 @@ public class FruitGuy {
 
     }
 
+    public static String[] removeRotten(String[] fruitBasket) {
+        if (fruitBasket == null) return new String[0];
+        return Arrays.stream(fruitBasket).map(FruitGuy::stockFreshItems).toArray(String[]::new);
+
+    }
+
     private static String stockFreshItems(String fruit) {
-        if (fruit.startsWith("rotten")) {
-            char[] replacedArr = fruit.replaceFirst("rotten", "").toCharArray();
-            if (Character.isUpperCase(replacedArr[0])) {
-                replacedArr[0] = Character.toLowerCase(replacedArr[0]);
-                return new String(replacedArr);
-            }
-            return new String(replacedArr);
-        } else {
-            return fruit;
-        }
+        return fruit.replaceFirst("rotten", "").toLowerCase(Locale.ROOT);
     }
 
 }
