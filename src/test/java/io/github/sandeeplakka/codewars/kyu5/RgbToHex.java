@@ -17,10 +17,10 @@ Any values that fall out of that range must be rounded to the closest valid valu
 Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
 
 The following are examples of expected output values:
-RgbToHex.rgb(255, 255, 255) // returns FFFFFF
-RgbToHex.rgb(255, 255, 300) // returns FFFFFF
-RgbToHex.rgb(0, 0, 0)       // returns 000000
-RgbToHex.rgb(148, 0, 211)   // returns 9400D3
+rgb(255, 255, 255) // returns FFFFFF
+rgb(255, 255, 300) // returns FFFFFF
+rgb(0, 0, 0)       // returns 000000
+rgb(148, 0, 211)   // returns 9400D3
 
 Categories : Algorithms
  */
@@ -28,20 +28,18 @@ public class RgbToHex {
 
     @Test
     public void sampleTests() {
-        assertEquals("000000", RgbToHex.rgb(0, 0, 0), "For input: (0, 0, 0)");
-        assertEquals("010203", RgbToHex.rgb(1, 2, 3), "For input: (1, 2, 3)");
-        assertEquals("FFFFFF", RgbToHex.rgb(255, 255, 255), "For input: (255, 255, 255)");
-        assertEquals("FEFDFC", RgbToHex.rgb(254, 253, 252), "For input: (254, 253, 252)");
-        assertEquals("00FF7D", RgbToHex.rgb(-20, 275, 125), "For input: (-20, 275, 125)");
+        assertEquals("000000", rgb(0, 0, 0), "For input: (0, 0, 0)");
+        assertEquals("010203", rgb(1, 2, 3), "For input: (1, 2, 3)");
+        assertEquals("FFFFFF", rgb(255, 255, 255), "For input: (255, 255, 255)");
+        assertEquals("FEFDFC", rgb(254, 253, 252), "For input: (254, 253, 252)");
+        assertEquals("00FF7D", rgb(-20, 275, 125), "For input: (-20, 275, 125)");
     }
 
     public static String rgb(int r, int g, int b) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(convertToHex(r));
-        builder.append(convertToHex(g));
-        builder.append(convertToHex(b));
 
-        return builder.toString();
+        return convertToHex(r) +
+                convertToHex(g) +
+                convertToHex(b);
     }
 
     private static String convertToHex(int decimal) {
