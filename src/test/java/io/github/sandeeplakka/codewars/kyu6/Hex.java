@@ -21,6 +21,7 @@ class HexTests {
     }
 }
 
+//TODO write efficient approach of dealing with Hex codes
 public class Hex {
 
     private final String hexCode;
@@ -69,8 +70,7 @@ public class Hex {
     }
 
     public boolean equals(Object other) {
-        if (other == null && this != null) return false;
-        if (other != null && this == null) return false;
+        if (other == null) return false;
         if (!(other instanceof Hex)) return false;
         return ((Hex) other).valueOf() == this.valueOf();
     }
