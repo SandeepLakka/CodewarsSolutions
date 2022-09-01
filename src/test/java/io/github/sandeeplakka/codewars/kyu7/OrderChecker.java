@@ -2,6 +2,12 @@ package io.github.sandeeplakka.codewars.kyu7;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,6 +40,18 @@ Categories : Fundamentals, Mathematics, Algorithms
 public class OrderChecker {
 
     @Test
+    public void singleInteger() {
+        assertTrue(isAscOrder(new int[]{1}));
+        assertTrue(isAscOrder(new int[]{2}));
+    }
+
+    @Test
+    public void sameInteger() {
+        assertTrue(isAscOrder(new int[]{1, 1}));
+        assertTrue(isAscOrder(new int[]{2, 2}));
+    }
+
+    @Test
     public void arrayOf2Integers() {
         assertTrue(isAscOrder(new int[]{1, 2}));
         assertFalse(isAscOrder(new int[]{2, 1}));
@@ -51,6 +69,24 @@ public class OrderChecker {
     public void moreAdvancedCases() {
         assertTrue(isAscOrder(new int[]{1, 4, 13, 97, 508, 1047, 20058}));
         assertFalse(isAscOrder(new int[]{56, 98, 123, 67, 742, 1024, 32, 90969}));
+    }
+
+    @Test
+    public void randomTest() {
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        for (int i = 0; i < 100; i++) {
+            int arrayLength = random.nextInt(10, 1000);
+            int[] orderedArray, unorderedArray;
+            do {
+                List<Integer> randomValues = IntStream.range(0, arrayLength)
+                        .map(x -> random.nextInt(1, arrayLength * 10))
+                        .boxed().collect(Collectors.toList());
+                orderedArray = randomValues.stream().mapToInt(x -> x).sorted().toArray();
+                unorderedArray = randomValues.stream().mapToInt(x -> x).toArray();
+            } while (Arrays.equals(orderedArray, unorderedArray));
+            assertTrue(isAscOrder(orderedArray));
+            assertFalse(isAscOrder(unorderedArray));
+        }
     }
 
     public static boolean isAscOrder(int[] arr) {
