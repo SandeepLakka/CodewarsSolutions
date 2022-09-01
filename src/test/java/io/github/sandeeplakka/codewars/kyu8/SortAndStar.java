@@ -2,9 +2,6 @@ package io.github.sandeeplakka.codewars.kyu8;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
@@ -46,6 +43,6 @@ public class SortAndStar {
                 result = value;
             }
         }
-        return Arrays.stream(result.split("")).collect(Collectors.joining("***"));
+        return String.join("***", result.split(""));
     }
 }
