@@ -2,6 +2,8 @@ package io.github.sandeeplakka.codewars.kyu7;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
@@ -31,16 +33,24 @@ public class LargestFiveDigitNumber {
     }
 
     private void doTest(String input, int expected) {
-        assertEquals(expected, solve(input));
+        assertEquals(expected, solve(input), "Solve : " + input);
+        assertEquals(expected, solveV2(input), "Solve v2 : " + input);
     }
 
     public static int solve(final String digits) {
-        int startIdx = 0;
         int val = 0;
         for (int i = 0; i <= digits.length() - 5; i++) {
-            int thisVal = Integer.parseInt(digits.substring(startIdx + i, startIdx + i + 5));
+            int thisVal = Integer.parseInt(digits.substring(i, i + 5));
             val = Math.max(val, thisVal);
         }
         return val;
+    }
+
+    public static int solveV2(final String digits) {
+        return IntStream.range(0, digits.length() - 4)
+                .mapToObj(value -> digits.substring(value, value + 5))
+                .mapToInt(Integer::parseInt)
+                .max()
+                .orElse(-1);
     }
 }
