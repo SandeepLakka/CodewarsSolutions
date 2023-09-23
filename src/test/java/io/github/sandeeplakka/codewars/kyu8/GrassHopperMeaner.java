@@ -1,8 +1,10 @@
 package io.github.sandeeplakka.codewars.kyu8;
 
-import java.util.stream.IntStream;
-import java.util.IntSummaryStatistics;
 import org.junit.jupiter.api.Test;
+
+import java.util.IntSummaryStatistics;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,15 +28,17 @@ For an example list of 1, 3, 5, 7
 
 Categories : Arrays, Lists, Fundamentals
 */
-public class GrassHopper {
+public class GrassHopperMeaner {
   @Test
   public void test1() {
     assertEquals(1, findAverage(new int[]{1}));
   }
+
   @Test
   public void test2() {
-    assertEquals(4, findAverage(new int[]{1,3,5,7}));
+    assertEquals(4, findAverage(new int[]{1, 3, 5, 7}));
   }
+
   @Test
   public void test3() {
     assertEquals(-5, findAverage(new int[]{-10,-5,-5,0}));
@@ -58,8 +62,8 @@ public class GrassHopper {
     IntSummaryStatistics stats = IntStream.of(nums).summaryStatistics();
     return (int)(stats.getSum()/stats.getCount());
   }
-  
-  public static int findAverageV1(int[] nums) {
+
+  public static double findAverageV1(int[] nums) {
     return IntStream.of(nums).summaryStatistics().getAverage();
   }
   
