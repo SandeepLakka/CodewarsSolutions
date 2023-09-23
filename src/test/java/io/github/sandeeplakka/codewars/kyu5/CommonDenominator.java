@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
-Common Denominators
+    Common Denominators
 
 You will have a list of rationals in the form [ [numer_1, denom_1] , ... [numer_n, denom_n] ]
 
